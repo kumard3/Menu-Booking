@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MenuItem from "../../components/MenuItem";
 
-export const MenuPage = ({ menuItems, setMenuItems }) => {
+export const MenuPage = ({ table, menuItems, setMenuItems }) => {
+  const [finalMeal, setFinalMeal] = useState({});
+  console.log(finalMeal);
+
   return (
     <>
       <h1>Menu</h1>
@@ -17,6 +20,9 @@ export const MenuPage = ({ menuItems, setMenuItems }) => {
         setMenuItems={setMenuItems}
         name={"Mutton"}
       />
+      <button onClick={() => setFinalMeal({ table: table, order: menuItems })}>
+        Submit order
+      </button>
     </>
   );
 };
