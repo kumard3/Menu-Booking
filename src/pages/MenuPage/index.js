@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MenuItem from "../../components/MenuItem";
+import db from "../../firebase";
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [finalMeal, setFinalMeal] = useState({});
