@@ -1,7 +1,11 @@
+import { useState } from "react";
+import { MenuPage } from "./pages/MenuPage";
+
 function App() {
+  const [menuItems, setMenuItems] = useState([]);
   return (
-    <div className="App">
-      <h1>hi</h1>
+    <div>
+      <MenuPage menuItems={menuItems} setMenuItems={setMenuItems} />
     </div>
   );
 }
