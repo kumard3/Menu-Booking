@@ -9,7 +9,7 @@ function App() {
   const [menuItems4, setMenuItems4] = useState([]);
 
   return (
-    <div>
+    <div className="bg-red-700 w-full h-screen ">
       <Router>
         <Route path="/table1">
           <MenuPage

@@ -8,6 +8,7 @@ const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
     const removeItem = menuItems.filter((menuItem) => {
       return menuItem.id !== id;
     });
+    setItemNumber(0);
     setMenuItems(removeItem);
     setToggleCartButton(!toggleCartButton);
   }
