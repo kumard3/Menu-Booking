@@ -4,8 +4,10 @@ import firebase from "firebase";
 import db from "../../firebase";
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
-  const [name, setName] = useState();
-
+  const [name, setName] = useState("");
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
   const submitOrder = () => {
     db.collection(`table${table}`).add({
       order: menuItems,
@@ -38,7 +40,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             type="text"
             value={name}
             required
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleName}
           />
         </section>
         <main className="w-full h-full flex flex-col items-center">
