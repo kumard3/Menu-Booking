@@ -24,7 +24,7 @@ const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
           Add +
         </button>
       )}
-      {itemNumber && (
+      {itemNumber ? (
         <button
           onClick={() => {
             setToggle(true);
@@ -35,7 +35,7 @@ const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
           }}>
           {toggle ? "Added" : "Add to order list"}
         </button>
-      )}
+      ) : null}
     </>
   );
 };

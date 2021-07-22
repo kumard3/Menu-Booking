@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MenuItem from "../../components/MenuItem";
 import firebase from "firebase";
 import db from "../../firebase";
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
-  const [name, setName] = useState();
-
+  const [name, setName] = useState("");
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
   const submitOrder = () => {
     db.collection(`table${table}`).add({
       order: menuItems,
@@ -17,7 +19,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
 
   const checkMenu = (event) => {
     event.preventDefault();
-    if (menuItems.length > 0) {
+    if (menuItems.length > 0 && name !== "") {
       submitOrder();
     } else {
       alert("Order any meal.");
@@ -38,7 +40,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             type="text"
             value={name}
             required
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleName}
           />
         </section>
         <main className="w-full h-full flex flex-col items-center">
