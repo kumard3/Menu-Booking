@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MenuItem from "../../components/MenuItem";
 import firebase from "firebase";
 import db from "../../firebase";
@@ -19,7 +19,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
 
   const checkMenu = (event) => {
     event.preventDefault();
-    if (menuItems.length > 0) {
+    if (menuItems.length > 0 && name !== "") {
       submitOrder();
     } else {
       alert("Order any meal.");
