@@ -5,17 +5,25 @@ import db from "../../firebase";
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [finalMeal, setFinalMeal] = useState({});
+  const [name, setName] = useState();
   console.log(finalMeal);
   const testButton = (event) => {
     event.preventDefault();
     db.collection(`table${table}`).add({
       order: finalMeal,
-      username: "anish",
+      username: name,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
   };
   return (
     <>
+      <label htmlFor="customerName">Name</label>
+      <input
+        type="text"
+        value={name}
+        required
+        onChange={(e) => setName(e.target.value)}
+      />
       <h1>Menu</h1>
       <MenuItem
         id={0}
