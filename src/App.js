@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MenuPage } from "./pages/MenuPage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { AdminPage } from "./pages/adminPage";
 function App() {
   const [menuItems1, setMenuItems1] = useState([]);
   const [menuItems2, setMenuItems2] = useState([]);
@@ -37,6 +38,9 @@ function App() {
             menuItems={menuItems4}
             setMenuItems={setMenuItems4}
           />
+        </Route>
+        <Route path="/admin">
+          <AdminPage />
         </Route>
       </Router>
     </div>
