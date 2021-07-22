@@ -3,8 +3,9 @@ import "../styles/menuitems.scss";
 
 const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
   const [itemNumber, setItemNumber] = useState(0);
-  const [toggleCartButton, setToggleCartButton] = useState(true);
+  const [toggle, setToggle] = useState(false);
   console.log(menuItems);
+<<<<<<< HEAD
   function handleDeleteClick(id) {
     const removeItem = menuItems.filter((menuItem) => {
       return menuItem.id !== id;
@@ -34,6 +35,26 @@ const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
         <button className="menuitems__button" onClick={handleClick1} > add </button>
       </div>
       {toggleCartButton ? (
+=======
+  // function handleDeleteClick(id) {
+  //   const removeItem = menuItems.filter((menuItem) => {
+  //     return menuItem.id !== id;
+  //   });
+  //   setItemNumber(0);
+  //   setMenuItems(removeItem);
+  //   setToggleCartButton(!toggleCartButton);
+  // }
+
+  return (
+    <>
+      <h3>{name}</h3>
+      {/* <input
+        type="number"
+        value={itemNumber}
+        onChange={(e) => setItemNumber(e.target.value)}
+      /> */}
+      {/* {toggleCartButton ? (
+>>>>>>> UI-Temporary
         <button
         className="menuitems__button1"
           onClick={() => {
@@ -48,7 +69,48 @@ const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
         </button>
       ) : (
         <button onClick={() => handleDeleteClick(id)}>Remove from cart</button>
+      )} */}
+      {/* {itemNumber > 0 ? (
+        <div>
+          <button onClick={() => setItemNumber(itemNumber - 1)}> - </button>{" "}
+          {itemNumber}
+          <button onClick={() => setItemNumber(itemNumber + 1)}>+</button>
+        </div>
+      ) : (
+        <button
+          onClick={() => setItemNumber(itemNumber + 1)}
+          className="bg-white">
+          Add +
+        </button>
+      )} */}
+      {itemNumber > 0 ? (
+        <div>
+          {" "}
+          <h3>Qty - </h3>
+          <button onClick={() => setItemNumber(itemNumber - 1)}>-</button>
+          {itemNumber}
+          <button onClick={() => setItemNumber(itemNumber + 1)}>+</button>
+        </div>
+      ) : (
+        <button
+          onClick={() => setItemNumber(itemNumber + 1)}
+          className="bg-white">
+          Add +
+        </button>
       )}
+      {itemNumber && (
+        <button
+          onClick={() => {
+            setToggle(true);
+            setMenuItems([
+              ...menuItems,
+              { id: id, name: name, numberOfPlates: itemNumber },
+            ]);
+          }}>
+          {toggle ? "Added" : "Add to order list"}
+        </button>
+      )}
+<<<<<<< HEAD
       {/* <button
         onClick={() =>
           setMenuItems([
@@ -59,6 +121,9 @@ const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
         Add to cart
       </button> */}
     </div>
+=======
+    </>
+>>>>>>> UI-Temporary
   );
 };
 export default MenuItem;
