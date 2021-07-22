@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import MenuItem from "../../components/MenuItem";
 import firebase from "firebase";
 import db from "../../firebase";
-
+import "../../styles/menupage.scss";
+import Nav from "../../components/Nav";
+import Catagory from "../../components/Catagory";
+import Submit from "../../components/Submit";
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
   const handleName = (e) => {
@@ -28,24 +31,29 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center w-screen h-screen">
-        <header className="flex justify-center items-center">
-          <h1 className="text-2xl">Table {table}</h1>
+      <div className="menupage">
+        <header className="menupage__header ">
+          <Nav table={table} />
         </header>
-        <section className="flex w-full justify-around items-center  ">
+        <section className="menupage__section ">
           {" "}
-          <label htmlFor="customerName">Name</label>
+          <label htmlFor="customerName">User Name</label>
           <input
-            className="border-blue-500"
+            className="menupage__input "
             type="text"
             value={name}
+            placeholder="Please enter your name"
             required
             onChange={handleName}
           />
         </section>
-        <main className="w-full h-full flex flex-col items-center">
+        <section className="menupage__catagory">
+          <h1>Catagory </h1>
+          <Catagory />
+        </section>
+        <h1 className="text-2xl">Menu</h1>
+        <main className="menupage__product">
           {" "}
-          <h1 className="text-2xl">Menu</h1>
           <MenuItem
             id={0}
             menuItems={menuItems}
@@ -58,12 +66,60 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             setMenuItems={setMenuItems}
             name={"Mutton"}
           />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+          />
+
         </main>
 
-        <button
-          className="w-full h-28 bg-yellow-400 flex items-center justify-center"
-          onClick={checkMenu}>
+        <button className="submit" onClick={checkMenu}>
           Submit Order
+        
         </button>
       </div>
     </>

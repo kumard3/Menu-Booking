@@ -13,6 +13,6 @@ export const AdminPage = () => {
       });
   }, []);
   return (
-    <> {orders.length > 0 ? <h1>{orders[0].username}</h1> : "Recieving Data"}</>
+    <> {orders.length > 0 ? <h1>{orders[1].username}</h1> : "Recieving Data"}</>
   );
 };
