@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
-const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
+const MenuItem = ({ id, menuItems, setMenuItems, name, price }) => {
   const [itemNumber, setItemNumber] = useState(0);
-  // const [toggle, setToggle] = useState(false);
+
   console.log(menuItems);
   const handlePlus = () => {
     let objIndex = menuItems.findIndex((obj) => obj.id === id);
     let newItem = [...menuItems];
-    let object = { id: id, name: name, numberOfPlates: itemNumber + 1 };
+    let object = {
+      id: id,
+      name: name,
+      numberOfPlates: itemNumber + 1,
+      price: price,
+    };
     newItem[objIndex] = object;
     setMenuItems(newItem);
     setItemNumber(itemNumber + 1);
@@ -26,7 +31,12 @@ const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
     } else {
       let objIndex = menuItems.findIndex((obj) => obj.id === id);
       let newItem = [...menuItems];
-      let object = { id: id, name: name, numberOfPlates: itemNumber - 1 };
+      let object = {
+        id: id,
+        name: name,
+        numberOfPlates: itemNumber - 1,
+        price: price,
+      };
       newItem[objIndex] = object;
       setMenuItems(newItem);
       setItemNumber(itemNumber - 1);
@@ -34,66 +44,36 @@ const MenuItem = ({ id, menuItems, setMenuItems, name }) => {
   };
 
   const handlePlusButton = () => {
-    // let objIndex = menuItems.findIndex((item) => item.id === id);
-    // let newMenuItems = [...menuItems];
-    // let updatedItem = { id: id, name: name, numberOfPlates: 1 };
-    // newMenuItems[objIndex] = updatedItem;
-    // setMenuItems(newMenuItems);
-
-    // let objIndex = menuItems.findIndex((obj) => obj.id === id);
-
-    //Log object to Console.
-    // console.log("Before update: ", menuItems[objIndex])
-    // let newItem = [...menuItems];
-    //Update object's name property.
-    // let object = { id: id, name: name, numberOfPlates: 1 };
-    // newItem[objIndex] = object;
-
-    //Log object to console again.
-    // setMenuItems(newItem);
     setItemNumber(1);
-    setMenuItems([...menuItems, { id: id, name: name, numberOfPlates: 1 }]);
+    setMenuItems([
+      ...menuItems,
+      { id: id, name: name, numberOfPlates: 1, price: price },
+    ]);
   };
   return (
     <>
-      <h3>{name}</h3>
-
-      {/* {itemNumber > 0 ? (
-        <div>
-          {" "}
-          <h3>Qty - </h3>
-          <button onClick={() => setItemNumber(itemNumber - 1)}>-</button>
-          {itemNumber}
-          <button onClick={() => setItemNumber(itemNumber + 1)}>+</button>
-        </div>
-      ) : (
-        <button
-          onClick={() => setItemNumber(itemNumber + 1)}
-          className="bg-white">
-          Add +
-        </button>
-      )}
-      {itemNumber ? (
-        <button
-          onClick={() => {
-            setToggle(true);
-            setMenuItems([
-              ...menuItems,
-              { id: id, name: name, numberOfPlates: itemNumber },
-            ]);
-          }}>
-          {toggle ? "Added" : "Add to order list"}
-        </button>
-      ) : null} */}
-      {itemNumber > 0 ? (
-        <div>
-          <button onClick={handleMinus}>-</button>
-          {itemNumber}
-          <button onClick={handlePlus}>+</button>
-        </div>
-      ) : (
-        <button onClick={handlePlusButton}>Add +</button>
-      )}
+      <div className="w-full flex items-center justify-around mt-5">
+        {" "}
+        <h3 className="text-white text-lg">{name}</h3>
+        <h3 className="text-white text-lg">Rs. {price} </h3>
+        {itemNumber > 0 ? (
+          <div className=" w-20 flex justify-around items-center text-xl">
+            <button className="bg-white w-4 rounded" onClick={handleMinus}>
+              -
+            </button>
+            <h2 className="text-white mx-2">{itemNumber}</h2>
+            <button className="bg-white w-4 rounded" onClick={handlePlus}>
+              +
+            </button>
+          </div>
+        ) : (
+          <button
+            className="bg-green-500 rounded-md w-14 text-xl"
+            onClick={handlePlusButton}>
+            Add +
+          </button>
+        )}
+      </div>
     </>
   );
 };
