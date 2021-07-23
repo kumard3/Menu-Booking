@@ -25,7 +25,7 @@ export const AdminPage = () => {
                 {order.order.map(item => {
                   return (
                   <div>
-                    
+                    <h3>{item.name} {item.numberOfPlates * item.price} {item.numberOfPlates}</h3>
                   </div>
                   )
                 } )}
