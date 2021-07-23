@@ -14,7 +14,6 @@ export const AdminPage = () => {
   }, []);
   return (
     <>
-      {/* {orders.length > 0 ? <h1>{orders[0].username}</h1> : "Recieving Data"} */}
       <div>
         <div>
           <h1>Table 1</h1>
@@ -22,14 +21,16 @@ export const AdminPage = () => {
             return (
               <div>
                 <h1>{order.username}</h1>
-                {order.order.map(item => {
+                {order.order.map((item) => {
                   return (
-                  <div>
-                    <h3>{item.name} {item.numberOfPlates * item.price} {item.numberOfPlates}</h3>
-                  </div>
-                  )
-                } )}
-                
+                    <div>
+                      <h3>
+                        {item.name} {item.numberOfPlates * item.price}{" "}
+                        {item.numberOfPlates}
+                      </h3>
+                    </div>
+                  );
+                })}
               </div>
             );
           })}
