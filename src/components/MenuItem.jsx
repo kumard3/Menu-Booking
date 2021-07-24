@@ -55,7 +55,7 @@ const MenuItem = ({ id, menuItems, setMenuItems, name, price }) => {
     <div className="menuitems">
       <img
         className="menuitems__img"
-        src="https://www.simplyrecipes.com/thmb/WFAZWL7N-orBG_wnB52Zun4xxhk=/3111x3111/smart/filters:no_upscale()/Simply-Recipes-Grilled-BBQ-Chicken-LEAD-10-03fd9892eaae4ce1a8a3f4c949657cfd.jpg"
+        src="http://grillinn.in/wp-content/uploads/2020/11/Veg-Aloo-Tikki.png"
         alt=""
       />
       <h3>{name}</h3>

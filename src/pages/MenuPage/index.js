@@ -102,27 +102,28 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         </section>
         <section className="menupage__catagory">
           <h1>Category </h1>
-          <div className="flex justify-evenly">
-            <button onClick={() => setCategory("all")}>All</button>
-            <button onClick={() => setCategory("chicken")}>Chicken</button>
-            <button>Mutton</button>
+          <div className="catagory" >
+          
+              <button className="catagory__wrapper" onClick={() => setCategory("all")}>All</button>
+              <button className="catagory__wrapper" onClick={() => setCategory("chicken")}>Chicken</button>
+              <button className="catagory__wrapper" >Mutton</button>
+            
           </div>
         </section>
         <h1 className="text-2xl">Menu</h1>
-        <main className="menupage__product"></main>
-
-        {(() => {
-          if (category === "all") {
-            return <All menuItems={menuItems} setMenuItems={setMenuItems} />;
-          } else if (category === "chicken") {
-            return (
-              <Chicken menuItems={menuItems} setMenuItems={setMenuItems} />
-            );
-          } else {
-            return <div>cAdd ANother</div>;
-          }
-        })()}
-
+        <main className="menupage__product">
+          {(() => {
+            if (category === "all") {
+              return <All menuItems={menuItems} setMenuItems={setMenuItems} />;
+            } else if (category === "chicken") {
+              return (
+                <Chicken menuItems={menuItems} setMenuItems={setMenuItems} />
+              );
+            } else {
+              return <div>cAdd ANother</div>;
+            }
+          })()}
+        </main>
         <button className="submit" onClick={checkMenu}>
           Submit Order
         </button>
