@@ -24,6 +24,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         order: menuItems,
         username: name,
         table: table,
+        completed: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(() => refreshPage());
