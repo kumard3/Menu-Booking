@@ -16,11 +16,11 @@ import Pasta from "../../components/category/Pasta";
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.min.css";
-Modal.setAppElement("#root");
+// Modal.setAppElement("#root");
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("all");
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -61,7 +61,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const checkMenu = (event) => {
     event.preventDefault();
     if (menuItems.length === 0) {
-      alert("Order any meal.");
+      alert("Add any meal.");
     } else if (name === "") {
       alert("Please enter your name.");
     } else {
@@ -173,7 +173,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         <button className="submit" onClick={checkMenu}>
           Submit Order
         </button>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
       </div>
     </>
   );
