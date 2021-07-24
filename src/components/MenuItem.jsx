@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/menuItem.scss";
-const MenuItem = ({ id, menuItems, setMenuItems, name, price }) => {
+const MenuItem = ({ id, menuItems, setMenuItems, name, price,img }) => {
   const [itemNumber, setItemNumber] = useState(0);
 
   console.log(menuItems);
@@ -55,12 +55,10 @@ const MenuItem = ({ id, menuItems, setMenuItems, name, price }) => {
     <div className="menuitems">
       <img
         className="menuitems__img"
-        src="http://grillinn.in/wp-content/uploads/2020/11/Veg-Aloo-Tikki.png"
+        src={img}
         alt=""
       />
       <h3>{name}</h3>
-      <hr />
-
       {itemNumber > 0 ? (
         <div className="menuitems__button2">
           <button className="menuitems__button3" onClick={handleMinus}>

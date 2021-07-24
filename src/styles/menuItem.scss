@@ -3,21 +3,22 @@ h1{
 }
 
 .menuitems{
-    width: 46vw;
+    /* width: 47.5vw; */
     display: flex;
-    height: 169px;
+    /* height: 251px; */
+    border-radius: 10px;
     margin: 2px;
     background: #F9F9F9;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 2px;
-    background: #F9F9F9;
-    box-shadow: 0px 1px 10px 4px rgba(0, 0, 0, 0.05);
+    
+    //box-shadow: 0px 1px 10px 4px rgba(0, 0, 0, 0.05);
 
     &__img{
-        width:43%;
-        border-radius: 50%;
+        // width:43%;
+        // border-radius: 50%;
     }
     &__img2{
         width: 50%;
@@ -27,8 +28,9 @@ h1{
         width: 50%;
   }
     &__img4{
-        width: 90%;
-        padding-left: 100px;
+        width: 100%;
+        left: 134px;
+        position: relative;
 
     }
 
@@ -49,10 +51,11 @@ h1{
         border: none;
     }
     &__button2{
-        margin-left: 50px;
+        position: relative;
+        left: 100px;
         /* float: right; */
         display: flex;
-        width: 90px;
+        width: 114px;
         align-items: center;
         background-color: #F8F9FD;
         box-shadow: 0px 1px 10px 4px rgba(0, 0, 0, 0.05);
@@ -61,21 +64,21 @@ h1{
     }
     &__button3{
         background-color: #ffffff;
-        height: 30px;
+        height: 45px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 3px;
-        width: 34px;
+        width: 40px;
     }
     &__button4{
         background-color: #ff7144;
-        height: 30px;
+        height: 45px;
         display: flex;
         align-items: center;
-        justify-content:center;
-        border-radius:3px;
-        width: 34px;
+        justify-content: center;
+        border-radius: 3px;
+        width: 40px;
 
     }
 }

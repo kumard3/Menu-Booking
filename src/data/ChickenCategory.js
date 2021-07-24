@@ -6,7 +6,7 @@ const ChickenCategoryData = [
   },
   {
     id: 11,
-    name: "Chicken 75",
+    name: "Chicken 5",
     price: 200,
   },
 

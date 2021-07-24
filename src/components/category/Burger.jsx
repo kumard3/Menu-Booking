@@ -1,10 +1,10 @@
 import React from "react";
-import ChickenCategoryData from "../../data/ChickenCategory.js";
+import BurgerData from "../../data/BurgerData.js";
 import MenuItem from "../MenuItem";
-const Chicken = ({ menuItems, setMenuItems }) => {
+const Burger = ({ menuItems, setMenuItems }) => {
   return (
     <>
-      {ChickenCategoryData.map((item) => (
+      {BurgerData.map((item) => (
         <MenuItem
           id={item.id}
           menuItems={menuItems}
@@ -17,4 +17,4 @@ const Chicken = ({ menuItems, setMenuItems }) => {
   );
 };
 
-export default Chicken;
+export default Burger;

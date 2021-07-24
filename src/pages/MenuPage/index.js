@@ -7,14 +7,17 @@ import Nav from "../../components/Nav";
 
 import All from "../../components/category/All";
 import Chicken from "../../components/category/Chicken";
+import Burger from "../../components/category/Burger";
+import Sandwich from "../../components/category/Sandwich";
+import Pasta from "../../components/category/Pasta";
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.min.css";
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
-
   const [category, setCategory] = useState("all");
+
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -106,6 +109,9 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           
               <button className="catagory__wrapper" onClick={() => setCategory("all")}>All</button>
               <button className="catagory__wrapper" onClick={() => setCategory("chicken")}>Chicken</button>
+              <button className="catagory__wrapper" onClick={() => setCategory("burger")}>Burger</button>
+              <button className="catagory__wrapper" onClick={() => setCategory("sandwich")}>Sandwich</button>
+              <button className="catagory__wrapper" onClick={() => setCategory("pasta")}>Pastas</button>
               <button className="catagory__wrapper" >Mutton</button>
             
           </div>
@@ -119,8 +125,25 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               return (
                 <Chicken menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            } else {
-              return <div>cAdd ANother</div>;
+            } 
+            else if (category === "burger") {
+              return (
+                <Burger menuItems={menuItems} setMenuItems={setMenuItems} />
+              );
+            }
+            else if (category === "sandwich") {
+              return (
+                <Sandwich menuItems={menuItems} setMenuItems={setMenuItems} />
+              );
+            }
+            else if (category === "pasta") {
+              return (
+                <Pasta menuItems={menuItems} setMenuItems={setMenuItems} />
+              );
+            }
+            
+            else {
+              return <div>Add ANother</div>;
             }
           })()}
         </main>
