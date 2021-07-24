@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MenuPage } from "./pages/MenuPage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AdminPage } from "./pages/adminPage";
+
 function App() {
   const [menuItems1, setMenuItems1] = useState([]);
   const [menuItems2, setMenuItems2] = useState([]);
@@ -9,7 +10,7 @@ function App() {
   const [menuItems4, setMenuItems4] = useState([]);
 
   return (
-    <div className="bg-red-700 w-full h-screen ">
+    <div className="app">
       <Router>
         <Route path="/table1">
           <MenuPage
@@ -39,6 +40,7 @@ function App() {
             setMenuItems={setMenuItems4}
           />
         </Route>
+
         <Route path="/admin">
           <AdminPage />
         </Route>

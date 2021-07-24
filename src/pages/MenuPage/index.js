@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import MenuItem from "../../components/MenuItem";
 import firebase from "firebase";
 import db from "../../firebase";
+import "../../styles/menuPage.scss";
+import Nav from "../../components/Nav";
+import Category from "../../components/Category";
+
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.min.css";
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
@@ -26,33 +32,74 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
     } else {
       submitOrder();
       alert("Your order has been submitted.");
+
       setMenuItems([]);
       setName("");
     }
   };
+  // const toastifySuccess = () => {
+  //   toast("Order Placed", {
+  //     position: "top-right",
+  //     autoClose: 5000,
+  //     hideProgressBar: true,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: false,
+  //     className: "submit-feedback success",
+  //     toastId: "notifyToast",
+  //   });
+  // };
+
+  // const submitdone = () => {
+  //   toastifySuccess();
+  // };
+  // const [name, setName] = useState("");
+  // const handleName = (e) => {
+  //   setName(e.target.value);
+  // };
+  // const submitOrder = () => {
+  //   db.collection(`table${table}`).add({
+  //     order: menuItems,
+  //     username: name,
+  //     table: table,
+  //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  //   });
+  // };
+
+  // const checkMenu = (event) => {
+  //   event.preventDefault();
+  //   if (menuItems.length > 0 && name !== "") {
+  //     submitOrder();
+  //   } else {
+  //     alert("Order any meal.");
+  //   }
+  // };
 
   return (
     <>
-      <div className="flex flex-col items-center w-screen h-screen">
-        <header className="flex justify-center items-center">
-          <h1 className="text-2xl text-white mb-4">Table {table}</h1>
+      <div className="menupage">
+        <header className="menupage__header ">
+          <Nav table={table} />
         </header>
-        <section className="flex w-full justify-around items-center mb-4  ">
+        <section className="menupage__section ">
           {" "}
-          <label htmlFor="customerName" className="text-white text-lg">
-            Name
-          </label>
+          <label htmlFor="customerName">User Name</label>
           <input
-            className="border-blue-500 rounded"
+            className="menupage__input "
             type="text"
             value={name}
+            placeholder="Please enter your name"
             required
             onChange={handleName}
           />
         </section>
-        <main className="w-full h-full flex flex-col items-center">
+        <section className="menupage__catagory">
+          <h1>Catagory </h1>
+          <Category />
+        </section>
+        <h1 className="text-2xl">Menu</h1>
+        <main className="menupage__product">
           {" "}
-          <h1 className="text-2xl text-white">Menu</h1>
           <MenuItem
             id={0}
             menuItems={menuItems}
@@ -67,11 +114,127 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             name={"Mutton"}
             price={150}
           />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+            price={100}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+            price={150}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+            price={100}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+            price={150}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+            price={100}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+            price={150}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+            price={100}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+            price={150}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+            price={100}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+            price={150}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+          />
+          <MenuItem
+            id={0}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Chicken"}
+          />
+          <MenuItem
+            id={1}
+            menuItems={menuItems}
+            setMenuItems={setMenuItems}
+            name={"Mutton"}
+          />
         </main>
 
-        <button
-          className="w-full h-28 bg-yellow-400 flex items-center justify-center text-gray-50 text-3xl"
-          onClick={checkMenu}>
+        <button className="submit" onClick={checkMenu}>
           Submit Order
         </button>
       </div>

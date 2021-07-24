@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import db from "../../firebase";
-
+import "../../styles/admin.scss";
 export const AdminPage = () => {
   const [orders, setOrders] = useState([]);
 
@@ -14,16 +14,17 @@ export const AdminPage = () => {
   }, []);
   return (
     <>
-      <div>
-        <div>
-          <h1>Table 1</h1>
+      {/* {orders.length > 0 ? <h1>{orders[0].username}</h1> : "Recieving Data"} */}
+      <div className="admin">
+        <h1 className="admin__table">Table 1</h1>
+        <div className="admin__wrapper">
           {orders.map((order) => {
             return (
-              <div>
-                <h1>{order.username}</h1>
+              <div className="admin__data">
+                <h1 className="admin__h1">{order.username}</h1>
                 {order.order.map((item) => {
                   return (
-                    <div>
+                    <div className="admin__items">
                       <h3>
                         {item.name} {item.numberOfPlates * item.price}{" "}
                         {item.numberOfPlates}
