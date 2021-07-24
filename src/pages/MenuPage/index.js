@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-
+import Modal from "react-modal";
 import firebase from "firebase";
 import db from "../../firebase";
 import "../../styles/menuPage.scss";
 import Nav from "../../components/Nav";
-
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from "@material-ui/core/Button";
 import All from "../../components/category/All";
 import Chicken from "../../components/category/Chicken";
 import Burger from "../../components/category/Burger";
@@ -13,10 +16,20 @@ import Pasta from "../../components/category/Pasta";
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.min.css";
-
+// Modal.setAppElement("#root");
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("all");
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload(false);
+  };
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -30,17 +43,25 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         completed: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
-      .then(() => refreshPage());
+      // .then(() => scrollToTop())
+      // .then(() => toastifySuccess())
+      // .then(() => toggleModal())
+      .then(() => handleClickOpen());
+    // .then(() => refreshPage());
   };
-  function refreshPage() {
-    alert("Your order has been recieved.");
-    window.location.reload(false);
-  }
+  // function refreshPage() {
+  //   setTimeout(function () {
+  //     window.location.reload(false);
+  //   }, 50000);
+  // }
+  // const scrollToTop = () => {
+  //   window.scrollTo(0, 0);
+  // };
 
   const checkMenu = (event) => {
     event.preventDefault();
     if (menuItems.length === 0) {
-      alert("Order any meal.");
+      alert("Add any meal.");
     } else if (name === "") {
       alert("Please enter your name.");
     } else {
@@ -48,9 +69,9 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
     }
   };
   // const toastifySuccess = () => {
-  //   toast("Order Placed", {
+  //   toast("Hurray! Order sent.", {
   //     position: "top-right",
-  //     autoClose: 5000,
+  //     autoClose: 50000,
   //     hideProgressBar: true,
   //     closeOnClick: true,
   //     pauseOnHover: true,
@@ -60,34 +81,23 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   //   });
   // };
 
-  // const submitdone = () => {
-  //   toastifySuccess();
-  // };
-  // const [name, setName] = useState("");
-  // const handleName = (e) => {
-  //   setName(e.target.value);
-  // };
-  // const submitOrder = () => {
-  //   db.collection(`table${table}`).add({
-  //     order: menuItems,
-  //     username: name,
-  //     table: table,
-  //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  //   });
-  // };
-
-  // const checkMenu = (event) => {
-  //   event.preventDefault();
-  //   if (menuItems.length > 0 && name !== "") {
-  //     submitOrder();
-  //   } else {
-  //     alert("Order any meal.");
-  //   }
-  // };
-
   return (
     <>
       <div className="menupage">
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description">
+          <DialogTitle id="alert-dialog-title">
+            {"Hurray! Your order has been submitted."}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
         <header className="menupage__header ">
           <Nav table={table} />
         </header>
@@ -105,15 +115,33 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         </section>
         <section className="menupage__catagory">
           <h1>Category </h1>
-          <div className="catagory" >
-          
-              <button className="catagory__wrapper" onClick={() => setCategory("all")}>All</button>
-              <button className="catagory__wrapper" onClick={() => setCategory("chicken")}>Chicken</button>
-              <button className="catagory__wrapper" onClick={() => setCategory("burger")}>Burger</button>
-              <button className="catagory__wrapper" onClick={() => setCategory("sandwich")}>Sandwich</button>
-              <button className="catagory__wrapper" onClick={() => setCategory("pasta")}>Pastas</button>
-              <button className="catagory__wrapper" >Mutton</button>
-            
+          <div className="catagory">
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("all")}>
+              All
+            </button>
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("chicken")}>
+              Chicken
+            </button>
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("burger")}>
+              Burger
+            </button>
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("sandwich")}>
+              Sandwich
+            </button>
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("pasta")}>
+              Pastas
+            </button>
+            <button className="catagory__wrapper">Mutton</button>
           </div>
         </section>
         <h1 className="text-2xl">Menu</h1>
@@ -125,24 +153,19 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               return (
                 <Chicken menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            } 
-            else if (category === "burger") {
+            } else if (category === "burger") {
               return (
                 <Burger menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            }
-            else if (category === "sandwich") {
+            } else if (category === "sandwich") {
               return (
                 <Sandwich menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            }
-            else if (category === "pasta") {
+            } else if (category === "pasta") {
               return (
                 <Pasta menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            }
-            
-            else {
+            } else {
               return <div>Add ANother</div>;
             }
           })()}
@@ -150,6 +173,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         <button className="submit" onClick={checkMenu}>
           Submit Order
         </button>
+        {/* <ToastContainer /> */}
       </div>
     </>
   );
