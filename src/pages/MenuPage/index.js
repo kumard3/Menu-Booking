@@ -13,6 +13,7 @@ import Chicken from "../../components/category/Chicken";
 import Burger from "../../components/category/Burger";
 import Sandwich from "../../components/category/Sandwich";
 import Pasta from "../../components/category/Pasta";
+import Pizza from "../../components/category/Pizza";
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.min.css";
@@ -116,11 +117,17 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         <section className="menupage__catagory">
           <h1>Category </h1>
           <div className="catagory">
-            <button
-              className="catagory__wrapper"
-              onClick={() => setCategory("all")}>
-              All
-            </button>
+          <button
+            className="catagory__wrapper"
+            onClick={() => setCategory("pizza")}>
+            Pizzas
+          </button>
+          <button
+            className="catagory__wrapper"
+            onClick={() => setCategory("pasta")}>
+            Pastas
+          </button>
+
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("chicken")}>
@@ -136,12 +143,6 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               onClick={() => setCategory("sandwich")}>
               Sandwich
             </button>
-            <button
-              className="catagory__wrapper"
-              onClick={() => setCategory("pasta")}>
-              Pastas
-            </button>
-            <button className="catagory__wrapper">Mutton</button>
           </div>
         </section>
         <h1 className="text-2xl">Menu</h1>
@@ -165,7 +166,13 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               return (
                 <Pasta menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            } else {
+            } 
+            else if (category === "pizza") {
+              return (
+                <Pizza menuItems={menuItems} setMenuItems={setMenuItems} />
+              );
+            } 
+            else {
               return <div>Add ANother</div>;
             }
           })()}
