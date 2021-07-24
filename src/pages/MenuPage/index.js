@@ -1,27 +1,37 @@
 import React, { useState } from "react";
-import MenuItem from "../../components/MenuItem";
+
 import firebase from "firebase";
 import db from "../../firebase";
 import "../../styles/menuPage.scss";
 import Nav from "../../components/Nav";
-import Category from "../../components/Category";
+
+import All from "../../components/category/All";
+import Chicken from "../../components/category/Chicken";
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.min.css";
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
+
+  const [category, setCategory] = useState("all");
   const handleName = (e) => {
     setName(e.target.value);
   };
   const submitOrder = () => {
-    db.collection(`table${table}`).add({
-      order: menuItems,
-      username: name,
-      table: table,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+    db.collection(`table${table}`)
+      .add({
+        order: menuItems,
+        username: name,
+        table: table,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => refreshPage());
   };
+  function refreshPage() {
+    alert("Your order has been recieved.");
+    window.location.reload(false);
+  }
 
   const checkMenu = (event) => {
     event.preventDefault();
@@ -31,10 +41,6 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
       alert("Please enter your name.");
     } else {
       submitOrder();
-      alert("Your order has been submitted.");
-
-      setMenuItems([]);
-      setName("");
     }
   };
   // const toastifySuccess = () => {
@@ -94,145 +100,27 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           />
         </section>
         <section className="menupage__catagory">
-          <h1>Catagory </h1>
-          <Category />
+          <h1>Category </h1>
+          <div className="flex justify-evenly">
+            <button onClick={() => setCategory("all")}>All</button>
+            <button onClick={() => setCategory("chicken")}>Chicken</button>
+            <button>Mutton</button>
+          </div>
         </section>
         <h1 className="text-2xl">Menu</h1>
-        <main className="menupage__product">
-          {" "}
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-            price={100}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-            price={150}
-          />
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-            price={100}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-            price={150}
-          />
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-            price={100}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-            price={150}
-          />
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-            price={100}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-            price={150}
-          />
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-            price={100}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-            price={150}
-          />
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-            price={100}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-            price={150}
-          />
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-          />
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-          />
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-          />
-          <MenuItem
-            id={0}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Chicken"}
-          />
-          <MenuItem
-            id={1}
-            menuItems={menuItems}
-            setMenuItems={setMenuItems}
-            name={"Mutton"}
-          />
-        </main>
+        <main className="menupage__product"></main>
+
+        {(() => {
+          if (category === "all") {
+            return <All menuItems={menuItems} setMenuItems={setMenuItems} />;
+          } else if (category === "chicken") {
+            return (
+              <Chicken menuItems={menuItems} setMenuItems={setMenuItems} />
+            );
+          } else {
+            return <div>cAdd ANother</div>;
+          }
+        })()}
 
         <button className="submit" onClick={checkMenu}>
           Submit Order
