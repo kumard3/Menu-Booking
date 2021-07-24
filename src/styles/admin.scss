@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  background-color: #e9be4566 !important;
+  align-items: center;
+  justify-content: center;
 
   &__table {
     font-size: 2rem;
@@ -14,6 +17,9 @@
   &__wrapper {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
   }
 
   &__data {
@@ -41,19 +47,67 @@
   }
 
   &__table1main {
-    display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     overflow: scroll;
-    width: 15rem;
+    width: 25vw;
+    height: 22rem;
+    margin: 10px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
   }
 
   &__green {
-    border: 1px solid green
+
+    background-color: rgba(0, 128, 0, 0.664);
+    padding: 8px;
+    margin: 2px;
+    border-radius: 10px;
+
+    h1 {
+      color: white !important;
+
+      text-decoration: line-through;
+
+    }
+
   }
 
   &__red {
-    border: 1px solid red
+    background-color: rgba(255, 0, 0, 0.808);
+    padding: 8px;
+    margin: 2px;
+    border-radius: 10px;
+
+    h1 {
+      color: white !important;
+    }
+
+    span {
+      color: #ffffffd1;
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    color: #ffffffd1;
+  }
+
+}
+
+.button__y {
+  border: none;
+  width: 50px;
+
+  h1 {
+
+    border: none;
+    width: 50px;
+    background-color: green;
+    border-radius: 10px;
+    margin: 10px;
+
   }
 }

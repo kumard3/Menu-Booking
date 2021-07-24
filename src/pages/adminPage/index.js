@@ -252,18 +252,22 @@ export const AdminPage = () => {
                 <div
                   className={order[0].completed ? "admin__green" : "admin__red"}
                 >
-                  <h1>{order[0].username}</h1>
+                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
+                 
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                        {item.name} {item.numberOfPlates * item.price}
-                        {item.numberOfPlates}
+                      <h1>
+                       <span>Product Name : </span>   {item.name} 
+                      </h1>
+                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
+                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button onClick={() => updateOrder(order[0].id)}>
-                      Yes
+                    <button className="button__y" onClick={() => updateOrder(order[0].id)}>
+                      <h1>Yes</h1>
                     </button>
                   )}
                 </div>
@@ -274,19 +278,25 @@ export const AdminPage = () => {
             <h1 className="admin__table">Table 2</h1>
             {orders2.map((order) => {
               return (
-                <div className="admin__table1">
-                  <h1>{order[0].username}</h1>
+                <div
+                  className={order[0].completed ? "admin__green" : "admin__red"}
+                >
+                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
+                 
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                        {item.name} {item.numberOfPlates * item.price}
-                        {item.numberOfPlates}
+                      <h1>
+                       <span>Product Name : </span>   {item.name} 
+                      </h1>
+                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
+                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button onClick={() => updateOrder2(order[0].id)}>
-                      Yes
+                    <button className="button__y" onClick={() => updateOrder2(order[0].id)}>
+                      <h1>Yes</h1>
                     </button>
                   )}
                 </div>
@@ -297,19 +307,25 @@ export const AdminPage = () => {
             <h1 className="admin__table">Table 3</h1>
             {orders3.map((order) => {
               return (
-                <div className="admin__table1">
-                  <h1>{order[0].username}</h1>
+                <div
+                  className={order[0].completed ? "admin__green" : "admin__red"}
+                >
+                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
+                 
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                        {item.name} {item.numberOfPlates * item.price}
-                        {item.numberOfPlates}
+                      <h1>
+                       <span>Product Name : </span>   {item.name} 
+                      </h1>
+                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
+                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button onClick={() => updateOrder3(order[0].id)}>
-                      Yes
+                    <button className="button__y" onClick={() => updateOrder3(order[0].id)}>
+                      <h1>Yes</h1>
                     </button>
                   )}
                 </div>
@@ -320,19 +336,25 @@ export const AdminPage = () => {
             <h1 className="admin__table">Table 4</h1>
             {orders4.map((order) => {
               return (
-                <div className="admin__table1">
-                  <h1>{order[0].username}</h1>
+                <div
+                  className={order[0].completed ? "admin__green" : "admin__red"}
+                >
+                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
+                 
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                        {item.name} {item.numberOfPlates * item.price}
-                        {item.numberOfPlates}
+                      <h1>
+                       <span>Product Name : </span>   {item.name} 
+                      </h1>
+                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
+                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button onClick={() => updateOrder4(order[0].id)}>
-                      Yes
+                    <button className="button__y" onClick={() => updateOrder4(order[0].id)}>
+                      <h1>Yes</h1>
                     </button>
                   )}
                 </div>
@@ -343,19 +365,25 @@ export const AdminPage = () => {
             <h1 className="admin__table">Table 5</h1>
             {orders5.map((order) => {
               return (
-                <div className="admin__table1">
-                  <h1>{order[0].username}</h1>
+                <div
+                  className={order[0].completed ? "admin__green" : "admin__red"}
+                >
+                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
+                 
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                        {item.name} {item.numberOfPlates * item.price}
-                        {item.numberOfPlates}
+                      <h1>
+                       <span>Product Name : </span>   {item.name} 
+                      </h1>
+                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
+                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button onClick={() => updateOrder5(order[0].id)}>
-                      Yes
+                    <button className="button__y" onClick={() => updateOrder5(order[0].id)}>
+                      <h1>Yes</h1>
                     </button>
                   )}
                 </div>
@@ -366,19 +394,25 @@ export const AdminPage = () => {
             <h1 className="admin__table">Table 6</h1>
             {orders6.map((order) => {
               return (
-                <div className="admin__table1">
-                  <h1>{order[0].username}</h1>
+                <div
+                  className={order[0].completed ? "admin__green" : "admin__red"}
+                >
+                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
+                 
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                        {item.name} {item.numberOfPlates * item.price}
-                        {item.numberOfPlates}
+                      <h1>
+                       <span>Product Name : </span>   {item.name} 
+                      </h1>
+                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
+                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button onClick={() => updateOrder6(order[0].id)}>
-                      Yes
+                    <button className="button__y" onClick={() => updateOrder6(order[0].id)}>
+                      <h1>Yes</h1>
                     </button>
                   )}
                 </div>
@@ -389,19 +423,25 @@ export const AdminPage = () => {
             <h1 className="admin__table">Table 7</h1>
             {orders7.map((order) => {
               return (
-                <div className="admin__table1">
-                  <h1>{order[0].username}</h1>
+                <div
+                  className={order[0].completed ? "admin__green" : "admin__red"}
+                >
+                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
+                 
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                        {item.name} {item.numberOfPlates * item.price}
-                        {item.numberOfPlates}
+                      <h1>
+                       <span>Product Name : </span>   {item.name} 
+                      </h1>
+                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
+                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button onClick={() => updateOrder7(order[0].id)}>
-                      Yes
+                    <button className="button__y" onClick={() => updateOrder7(order[0].id)}>
+                      <h1>Yes</h1>
                     </button>
                   )}
                 </div>
@@ -412,19 +452,25 @@ export const AdminPage = () => {
             <h1 className="admin__table">Table 8</h1>
             {orders8.map((order) => {
               return (
-                <div className="admin__table1">
-                  <h1>{order[0].username}</h1>
+                <div
+                  className={order[0].completed ? "admin__green" : "admin__red"}
+                >
+                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
+                 
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                        {item.name} {item.numberOfPlates * item.price}
-                        {item.numberOfPlates}
+                      <h1>
+                       <span>Product Name : </span>   {item.name} 
+                      </h1>
+                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
+                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button onClick={() => updateOrder8(order[0].id)}>
-                      Yes
+                    <button className="button__y" onClick={() => updateOrder8(order[0].id)}>
+                      <h1>Yes</h1>
                     </button>
                   )}
                 </div>
@@ -435,19 +481,25 @@ export const AdminPage = () => {
             <h1 className="admin__table">Table 9</h1>
             {orders9.map((order) => {
               return (
-                <div className="admin__table1">
-                  <h1>{order[0].username}</h1>
+                <div
+                  className={order[0].completed ? "admin__green" : "admin__red"}
+                >
+                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
+                 
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                        {item.name} {item.numberOfPlates * item.price}
-                        {item.numberOfPlates}
+                      <h1>
+                       <span>Product Name : </span>   {item.name} 
+                      </h1>
+                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
+                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button onClick={() => updateOrder9(order[0].id)}>
-                      Yes
+                    <button className="button__y" onClick={() => updateOrder9(order[0].id)}>
+                      <h1>Yes</h1>
                     </button>
                   )}
                 </div>
