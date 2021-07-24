@@ -17,6 +17,7 @@ export const AdminPage = () => {
               order: doc.data().order,
               id: doc.id,
               completed: doc.data().completed,
+              username: doc.data().username,
             },
           ])
         );
@@ -37,71 +38,23 @@ export const AdminPage = () => {
       <div className="admin">
         <h1 className="admin__table">Table 1</h1>
         <div className="admin__wrapper">
-          {/* {orders.map((order) => {
-            if (!order.recieved) {
-              return (
-                <div className="admin__data">
-                  <h1 className="admin__h1">{order.username}</h1>
-                  {order.order.map((item) => {
-                    return (
-                      <div className="admin__items">
-                        <h3>
-                          {item.name} {item.numberOfPlates * item.price}{" "}
-                          {item.numberOfPlates}
-                        </h3>
-                      </div>
-                    );
-                  })}
-                  <button>Yes</button>
-                </div>
-              );
-            } else {
-              return (
-                <div className="admin__data">
-                  <h1 className="admin__h1">{order.username}</h1>
-                  {order.order.map((item) => {
-                    return (
-                      <div className="admin__items">
-                        <h3>
-                          {item.name} {item.numberOfPlates * item.price}{" "}
-                          {item.numberOfPlates}
-                        </h3>
-                      </div>
-                    );
-                  })}
-                </div>
-              );
-            }
-          })} */}
           {orders.map((order) => {
-            if (order[0].completed) {
-              return (
-                <div>
-                  {order[0].order.map((item) => {
-                    return (
-                      <div>
-                        {item.name} {item.numberOfPlates * item.price}{" "}
-                        {item.numberOfPlates}
-                      </div>
-                    );
-                  })}
-                </div>
-              );
-            } else {
-              return (
-                <div>
-                  {order[0].order.map((item) => {
-                    return (
-                      <div>
-                        {item.name} {item.numberOfPlates * item.price}{" "}
-                        {item.numberOfPlates}
-                      </div>
-                    );
-                  })}
+            return (
+              <div>
+                <h1>{order[0].username}</h1>
+                {order[0].order.map((item) => {
+                  return (
+                    <div>
+                      {item.name} {item.numberOfPlates * item.price}{" "}
+                      {item.numberOfPlates}
+                    </div>
+                  );
+                })}
+                {!order[0].completed && (
                   <button onClick={() => updateOrder(order[0].id)}>Yes</button>
-                </div>
-              );
-            }
+                )}
+              </div>
+            );
           })}
         </div>
       </div>
