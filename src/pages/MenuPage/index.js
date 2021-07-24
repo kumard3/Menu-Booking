@@ -1,22 +1,35 @@
 import React, { useState } from "react";
-
+import Modal from "react-modal";
 import firebase from "firebase";
 import db from "../../firebase";
 import "../../styles/menuPage.scss";
 import Nav from "../../components/Nav";
-
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Button from "@material-ui/core/Button";
 import All from "../../components/category/All";
 import Chicken from "../../components/category/Chicken";
 import Burger from "../../components/category/Burger";
 import Sandwich from "../../components/category/Sandwich";
 import Pasta from "../../components/category/Pasta";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.min.css";
+Modal.setAppElement("#root");
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("all");
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload(false);
+  };
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -30,18 +43,20 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         completed: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
-      .then(() => scrollToTop())
-      .then(() => toastifySuccess())
-      .then(() => refreshPage());
+      // .then(() => scrollToTop())
+      // .then(() => toastifySuccess())
+      // .then(() => toggleModal())
+      .then(() => handleClickOpen());
+    // .then(() => refreshPage());
   };
-  function refreshPage() {
-    setTimeout(function () {
-      window.location.reload(false);
-    }, 50000);
-  }
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
+  // function refreshPage() {
+  //   setTimeout(function () {
+  //     window.location.reload(false);
+  //   }, 50000);
+  // }
+  // const scrollToTop = () => {
+  //   window.scrollTo(0, 0);
+  // };
 
   const checkMenu = (event) => {
     event.preventDefault();
@@ -53,22 +68,36 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
       submitOrder();
     }
   };
-  const toastifySuccess = () => {
-    toast("Hurray! Order sent.", {
-      position: "top-right",
-      autoClose: 50000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      className: "submit-feedback success",
-      toastId: "notifyToast",
-    });
-  };
+  // const toastifySuccess = () => {
+  //   toast("Hurray! Order sent.", {
+  //     position: "top-right",
+  //     autoClose: 50000,
+  //     hideProgressBar: true,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: false,
+  //     className: "submit-feedback success",
+  //     toastId: "notifyToast",
+  //   });
+  // };
 
   return (
     <>
       <div className="menupage">
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description">
+          <DialogTitle id="alert-dialog-title">
+            {"Hurray! Your order has been submitted."}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
         <header className="menupage__header ">
           <Nav table={table} />
         </header>

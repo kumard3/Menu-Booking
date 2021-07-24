@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../styles/menuItem.scss";
-const MenuItem = ({ id, menuItems, setMenuItems, name, price,img }) => {
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+const MenuItem = ({ id, menuItems, setMenuItems, name, price, img }) => {
   const [itemNumber, setItemNumber] = useState(0);
 
   console.log(menuItems);
@@ -53,10 +55,9 @@ const MenuItem = ({ id, menuItems, setMenuItems, name, price,img }) => {
 
   return (
     <div className="menuitems">
-      <img
-        className="menuitems__img"
-        src={img}
-        alt=""
+      {/* <img className="menuitems__img" src={img} alt="" /> */}
+      <LazyLoadImage
+        src={img} // use normal <img> attributes as props
       />
       <h3>{name}</h3>
       {itemNumber > 0 ? (
