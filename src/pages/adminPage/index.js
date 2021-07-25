@@ -1,4 +1,3 @@
-import { computeHeadingLevel } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 import db from "../../firebase";
 import "../../styles/admin.scss";
@@ -13,12 +12,10 @@ export const AdminPage = () => {
   const [orders8, setOrders8] = useState([]);
   const [orders9, setOrders9] = useState([]);
 
-  console.log(orders);
   useEffect(() => {
     db.collection("table1")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         setOrders(
           snapshot.docs.map((doc) => [
             {
@@ -35,7 +32,6 @@ export const AdminPage = () => {
     db.collection("table2")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         setOrders2(
           snapshot.docs.map((doc) => [
             {
@@ -52,7 +48,6 @@ export const AdminPage = () => {
     db.collection("table3")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         setOrders3(
           snapshot.docs.map((doc) => [
             {
@@ -69,7 +64,6 @@ export const AdminPage = () => {
     db.collection("table4")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         setOrders4(
           snapshot.docs.map((doc) => [
             {
@@ -86,7 +80,6 @@ export const AdminPage = () => {
     db.collection("table5")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         setOrders5(
           snapshot.docs.map((doc) => [
             {
@@ -103,7 +96,6 @@ export const AdminPage = () => {
     db.collection("table6")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         setOrders6(
           snapshot.docs.map((doc) => [
             {
@@ -120,7 +112,6 @@ export const AdminPage = () => {
     db.collection("table7")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         setOrders7(
           snapshot.docs.map((doc) => [
             {
@@ -137,7 +128,6 @@ export const AdminPage = () => {
     db.collection("table8")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         setOrders8(
           snapshot.docs.map((doc) => [
             {
@@ -154,7 +144,6 @@ export const AdminPage = () => {
     db.collection("table9")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        console.log(snapshot);
         setOrders9(
           snapshot.docs.map((doc) => [
             {
@@ -169,76 +158,31 @@ export const AdminPage = () => {
   }, []);
 
   const updateOrder = (id) => {
-    db.collection("table1")
-      .doc(id)
-      .update({ completed: true })
-      .then(() => {
-        console.log("Updated");
-      });
+    db.collection("table1").doc(id).update({ completed: true });
   };
   const updateOrder2 = (id) => {
-    db.collection("table2")
-      .doc(id)
-      .update({ completed: true })
-      .then(() => {
-        console.log("Updated");
-      });
+    db.collection("table2").doc(id).update({ completed: true });
   };
   const updateOrder3 = (id) => {
-    db.collection("table3")
-      .doc(id)
-      .update({ completed: true })
-      .then(() => {
-        console.log("Updated");
-      });
+    db.collection("table3").doc(id).update({ completed: true });
   };
   const updateOrder4 = (id) => {
-    db.collection("table4")
-      .doc(id)
-      .update({ completed: true })
-      .then(() => {
-        console.log("Updated");
-      });
+    db.collection("table4").doc(id).update({ completed: true });
   };
   const updateOrder5 = (id) => {
-    db.collection("table5")
-      .doc(id)
-      .update({ completed: true })
-      .then(() => {
-        console.log("Updated");
-      });
+    db.collection("table5").doc(id).update({ completed: true });
   };
   const updateOrder6 = (id) => {
-    db.collection("table6")
-      .doc(id)
-      .update({ completed: true })
-      .then(() => {
-        console.log("Updated");
-      });
+    db.collection("table6").doc(id).update({ completed: true });
   };
   const updateOrder7 = (id) => {
-    db.collection("table7")
-      .doc(id)
-      .update({ completed: true })
-      .then(() => {
-        console.log("Updated");
-      });
+    db.collection("table7").doc(id).update({ completed: true });
   };
   const updateOrder8 = (id) => {
-    db.collection("table8")
-      .doc(id)
-      .update({ completed: true })
-      .then(() => {
-        console.log("Updated");
-      });
+    db.collection("table8").doc(id).update({ completed: true });
   };
   const updateOrder9 = (id) => {
-    db.collection("table9")
-      .doc(id)
-      .update({ completed: true })
-      .then(() => {
-        console.log("Updated");
-      });
+    db.collection("table9").doc(id).update({ completed: true });
   };
   console.log(orders2, "orders2");
   return (
@@ -250,23 +194,35 @@ export const AdminPage = () => {
             {orders.map((order) => {
               return (
                 <div
-                  className={order[0].completed ? "admin__green" : "admin__red"}
-                >
-                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
-                 
+                  className={
+                    order[0].completed ? "admin__green" : "admin__red"
+                  }>
+                  <h1 className="h1">
+                    {" "}
+                    <span>User Name : </span> {order[0].username}
+                  </h1>
+
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                      <h1>
-                       <span>Product Name : </span>   {item.name} 
-                      </h1>
-                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
-                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
+                        <h1>
+                          <span>Product Name : </span> {item.name}
+                        </h1>
+                        <h1>
+                          {" "}
+                          <span>Price :</span>{" "}
+                          {item.numberOfPlates * item.price}
+                        </h1>
+                        <h1>
+                          <span>Number Of Plates :</span> {item.numberOfPlates}
+                        </h1>
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button className="button__y" onClick={() => updateOrder(order[0].id)}>
+                    <button
+                      className="button__y"
+                      onClick={() => updateOrder(order[0].id)}>
                       <h1>Yes</h1>
                     </button>
                   )}
@@ -279,23 +235,35 @@ export const AdminPage = () => {
             {orders2.map((order) => {
               return (
                 <div
-                  className={order[0].completed ? "admin__green" : "admin__red"}
-                >
-                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
-                 
+                  className={
+                    order[0].completed ? "admin__green" : "admin__red"
+                  }>
+                  <h1 className="h1">
+                    {" "}
+                    <span>User Name : </span> {order[0].username}
+                  </h1>
+
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                      <h1>
-                       <span>Product Name : </span>   {item.name} 
-                      </h1>
-                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
-                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
+                        <h1>
+                          <span>Product Name : </span> {item.name}
+                        </h1>
+                        <h1>
+                          {" "}
+                          <span>Price :</span>{" "}
+                          {item.numberOfPlates * item.price}
+                        </h1>
+                        <h1>
+                          <span>Number Of Plates :</span> {item.numberOfPlates}
+                        </h1>
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button className="button__y" onClick={() => updateOrder2(order[0].id)}>
+                    <button
+                      className="button__y"
+                      onClick={() => updateOrder2(order[0].id)}>
                       <h1>Yes</h1>
                     </button>
                   )}
@@ -308,23 +276,35 @@ export const AdminPage = () => {
             {orders3.map((order) => {
               return (
                 <div
-                  className={order[0].completed ? "admin__green" : "admin__red"}
-                >
-                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
-                 
+                  className={
+                    order[0].completed ? "admin__green" : "admin__red"
+                  }>
+                  <h1 className="h1">
+                    {" "}
+                    <span>User Name : </span> {order[0].username}
+                  </h1>
+
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                      <h1>
-                       <span>Product Name : </span>   {item.name} 
-                      </h1>
-                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
-                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
+                        <h1>
+                          <span>Product Name : </span> {item.name}
+                        </h1>
+                        <h1>
+                          {" "}
+                          <span>Price :</span>{" "}
+                          {item.numberOfPlates * item.price}
+                        </h1>
+                        <h1>
+                          <span>Number Of Plates :</span> {item.numberOfPlates}
+                        </h1>
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button className="button__y" onClick={() => updateOrder3(order[0].id)}>
+                    <button
+                      className="button__y"
+                      onClick={() => updateOrder3(order[0].id)}>
                       <h1>Yes</h1>
                     </button>
                   )}
@@ -337,23 +317,35 @@ export const AdminPage = () => {
             {orders4.map((order) => {
               return (
                 <div
-                  className={order[0].completed ? "admin__green" : "admin__red"}
-                >
-                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
-                 
+                  className={
+                    order[0].completed ? "admin__green" : "admin__red"
+                  }>
+                  <h1 className="h1">
+                    {" "}
+                    <span>User Name : </span> {order[0].username}
+                  </h1>
+
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                      <h1>
-                       <span>Product Name : </span>   {item.name} 
-                      </h1>
-                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
-                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
+                        <h1>
+                          <span>Product Name : </span> {item.name}
+                        </h1>
+                        <h1>
+                          {" "}
+                          <span>Price :</span>{" "}
+                          {item.numberOfPlates * item.price}
+                        </h1>
+                        <h1>
+                          <span>Number Of Plates :</span> {item.numberOfPlates}
+                        </h1>
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button className="button__y" onClick={() => updateOrder4(order[0].id)}>
+                    <button
+                      className="button__y"
+                      onClick={() => updateOrder4(order[0].id)}>
                       <h1>Yes</h1>
                     </button>
                   )}
@@ -366,23 +358,35 @@ export const AdminPage = () => {
             {orders5.map((order) => {
               return (
                 <div
-                  className={order[0].completed ? "admin__green" : "admin__red"}
-                >
-                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
-                 
+                  className={
+                    order[0].completed ? "admin__green" : "admin__red"
+                  }>
+                  <h1 className="h1">
+                    {" "}
+                    <span>User Name : </span> {order[0].username}
+                  </h1>
+
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                      <h1>
-                       <span>Product Name : </span>   {item.name} 
-                      </h1>
-                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
-                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
+                        <h1>
+                          <span>Product Name : </span> {item.name}
+                        </h1>
+                        <h1>
+                          {" "}
+                          <span>Price :</span>{" "}
+                          {item.numberOfPlates * item.price}
+                        </h1>
+                        <h1>
+                          <span>Number Of Plates :</span> {item.numberOfPlates}
+                        </h1>
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button className="button__y" onClick={() => updateOrder5(order[0].id)}>
+                    <button
+                      className="button__y"
+                      onClick={() => updateOrder5(order[0].id)}>
                       <h1>Yes</h1>
                     </button>
                   )}
@@ -395,23 +399,35 @@ export const AdminPage = () => {
             {orders6.map((order) => {
               return (
                 <div
-                  className={order[0].completed ? "admin__green" : "admin__red"}
-                >
-                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
-                 
+                  className={
+                    order[0].completed ? "admin__green" : "admin__red"
+                  }>
+                  <h1 className="h1">
+                    {" "}
+                    <span>User Name : </span> {order[0].username}
+                  </h1>
+
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                      <h1>
-                       <span>Product Name : </span>   {item.name} 
-                      </h1>
-                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
-                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
+                        <h1>
+                          <span>Product Name : </span> {item.name}
+                        </h1>
+                        <h1>
+                          {" "}
+                          <span>Price :</span>{" "}
+                          {item.numberOfPlates * item.price}
+                        </h1>
+                        <h1>
+                          <span>Number Of Plates :</span> {item.numberOfPlates}
+                        </h1>
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button className="button__y" onClick={() => updateOrder6(order[0].id)}>
+                    <button
+                      className="button__y"
+                      onClick={() => updateOrder6(order[0].id)}>
                       <h1>Yes</h1>
                     </button>
                   )}
@@ -424,23 +440,35 @@ export const AdminPage = () => {
             {orders7.map((order) => {
               return (
                 <div
-                  className={order[0].completed ? "admin__green" : "admin__red"}
-                >
-                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
-                 
+                  className={
+                    order[0].completed ? "admin__green" : "admin__red"
+                  }>
+                  <h1 className="h1">
+                    {" "}
+                    <span>User Name : </span> {order[0].username}
+                  </h1>
+
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                      <h1>
-                       <span>Product Name : </span>   {item.name} 
-                      </h1>
-                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
-                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
+                        <h1>
+                          <span>Product Name : </span> {item.name}
+                        </h1>
+                        <h1>
+                          {" "}
+                          <span>Price :</span>{" "}
+                          {item.numberOfPlates * item.price}
+                        </h1>
+                        <h1>
+                          <span>Number Of Plates :</span> {item.numberOfPlates}
+                        </h1>
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button className="button__y" onClick={() => updateOrder7(order[0].id)}>
+                    <button
+                      className="button__y"
+                      onClick={() => updateOrder7(order[0].id)}>
                       <h1>Yes</h1>
                     </button>
                   )}
@@ -453,23 +481,35 @@ export const AdminPage = () => {
             {orders8.map((order) => {
               return (
                 <div
-                  className={order[0].completed ? "admin__green" : "admin__red"}
-                >
-                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
-                 
+                  className={
+                    order[0].completed ? "admin__green" : "admin__red"
+                  }>
+                  <h1 className="h1">
+                    {" "}
+                    <span>User Name : </span> {order[0].username}
+                  </h1>
+
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                      <h1>
-                       <span>Product Name : </span>   {item.name} 
-                      </h1>
-                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
-                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
+                        <h1>
+                          <span>Product Name : </span> {item.name}
+                        </h1>
+                        <h1>
+                          {" "}
+                          <span>Price :</span>{" "}
+                          {item.numberOfPlates * item.price}
+                        </h1>
+                        <h1>
+                          <span>Number Of Plates :</span> {item.numberOfPlates}
+                        </h1>
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button className="button__y" onClick={() => updateOrder8(order[0].id)}>
+                    <button
+                      className="button__y"
+                      onClick={() => updateOrder8(order[0].id)}>
                       <h1>Yes</h1>
                     </button>
                   )}
@@ -482,23 +522,35 @@ export const AdminPage = () => {
             {orders9.map((order) => {
               return (
                 <div
-                  className={order[0].completed ? "admin__green" : "admin__red"}
-                >
-                  <h1 className="h1"> <span>User Name : </span> {order[0].username}</h1>
-                 
+                  className={
+                    order[0].completed ? "admin__green" : "admin__red"
+                  }>
+                  <h1 className="h1">
+                    {" "}
+                    <span>User Name : </span> {order[0].username}
+                  </h1>
+
                   {order[0].order.map((item) => {
                     return (
                       <div>
-                      <h1>
-                       <span>Product Name : </span>   {item.name} 
-                      </h1>
-                      <h1> <span>Price :</span>  {item.numberOfPlates * item.price}</h1>
-                      <h1><span>Number Of Plates :</span>  {item.numberOfPlates}</h1>  
+                        <h1>
+                          <span>Product Name : </span> {item.name}
+                        </h1>
+                        <h1>
+                          {" "}
+                          <span>Price :</span>{" "}
+                          {item.numberOfPlates * item.price}
+                        </h1>
+                        <h1>
+                          <span>Number Of Plates :</span> {item.numberOfPlates}
+                        </h1>
                       </div>
                     );
                   })}
                   {!order[0].completed && (
-                    <button className="button__y" onClick={() => updateOrder9(order[0].id)}>
+                    <button
+                      className="button__y"
+                      onClick={() => updateOrder9(order[0].id)}>
                       <h1>Yes</h1>
                     </button>
                   )}
