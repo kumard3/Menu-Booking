@@ -1,5 +1,5 @@
 import React from "react";
-import ShakeData from "../../data/ShakeData.js";
+import ShakeData from "../../data/ShakesData.js";
 import MenuItem from "../MenuItem";
 const Shake = ({ menuItems, setMenuItems }) => {
     console.log(ShakeData);
