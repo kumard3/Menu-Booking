@@ -60,11 +60,9 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         completed: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
-      
+
       .then(() => handleClickOpen());
-    
   };
-  
 
   const checkMenu = (event) => {
     event.preventDefault();
