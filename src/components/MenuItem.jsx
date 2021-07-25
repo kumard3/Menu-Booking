@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../styles/menuItem.scss";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const MenuItem = ({ id, menuItems, setMenuItems, name, price, img }) => {
   const [itemNumber, setItemNumber] = useState(0);
