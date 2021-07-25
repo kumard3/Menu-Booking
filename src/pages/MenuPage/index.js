@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
+
 import firebase from "firebase";
 import db from "../../firebase";
 import "../../styles/menuPage.scss";
@@ -117,16 +117,16 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         <section className="menupage__catagory">
           <h1>Category </h1>
           <div className="catagory">
-          <button
-            className="catagory__wrapper"
-            onClick={() => setCategory("pizza")}>
-            Pizzas
-          </button>
-          <button
-            className="catagory__wrapper"
-            onClick={() => setCategory("pasta")}>
-            Pastas
-          </button>
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("pizza")}>
+              Pizzas
+            </button>
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("pasta")}>
+              Pastas
+            </button>
 
             <button
               className="catagory__wrapper"
@@ -166,13 +166,11 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               return (
                 <Pasta menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            } 
-            else if (category === "pizza") {
+            } else if (category === "pizza") {
               return (
                 <Pizza menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            } 
-            else {
+            } else {
               return <div>Add ANother</div>;
             }
           })()}

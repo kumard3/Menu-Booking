@@ -315,7 +315,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 3</h1>
+            <h1 className="admin__table">Table 3 {newOrder3}</h1>
             {orders3.map((order) => {
               return (
                 <div
@@ -356,7 +356,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 4</h1>
+            <h1 className="admin__table">Table 4 {newOrder4}</h1>
             {orders4.map((order) => {
               return (
                 <div
@@ -397,7 +397,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 5</h1>
+            <h1 className="admin__table">Table 5 {newOrder5}</h1>
             {orders5.map((order) => {
               return (
                 <div
@@ -438,7 +438,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 6</h1>
+            <h1 className="admin__table">Table 6 {newOrder6}</h1>
             {orders6.map((order) => {
               return (
                 <div
@@ -479,7 +479,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 7</h1>
+            <h1 className="admin__table">Table 7 {newOrder7}</h1>
             {orders7.map((order) => {
               return (
                 <div
@@ -520,7 +520,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 8</h1>
+            <h1 className="admin__table">Table 8 {newOrder8}</h1>
             {orders8.map((order) => {
               return (
                 <div
@@ -561,7 +561,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 9</h1>
+            <h1 className="admin__table">Table 9 {newOrder9}</h1>
             {orders9.map((order) => {
               return (
                 <div
