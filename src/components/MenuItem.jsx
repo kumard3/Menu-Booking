@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "../styles/menuItem.scss";
 
 const MenuItem = ({ id, menuItems, setMenuItems, name, price, img }) => {
@@ -54,10 +55,11 @@ const MenuItem = ({ id, menuItems, setMenuItems, name, price, img }) => {
 
   return (
     <div className="menuitems">
-       <img className="menuitems__img" src={img} alt="" /> 
-    {/*    <LazyLoadImage
-        src={img} // use normal <img> attributes as props
-    /> */}
+ {/* <img className="menuitems__img" src={img} alt="" /> */} 
+        <LazyLoadImage
+        src={img} 
+        effect="blur"// use normal <img> attributes as props
+    /> 
       <h3>{name}</h3>
       {itemNumber > 0 ? (
         <div className="menuitems__button2">

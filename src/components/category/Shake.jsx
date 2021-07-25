@@ -1,11 +1,11 @@
 import React from "react";
-import SandwichsData from "../../data/SandwichData.js";
+import ShakeData from "../../data/ShakeData.js";
 import MenuItem from "../MenuItem";
-const Sandwich = ({ menuItems, setMenuItems }) => {
-    console.log(SandwichsData);
+const Shake = ({ menuItems, setMenuItems }) => {
+    console.log(ShakeData);
   return (
     <>
-      {SandwichsData.map((item) => (
+      {ShakeData.map((item) => (
         <MenuItem
           id={item.id}
           menuItems={menuItems}
@@ -19,4 +19,4 @@ const Sandwich = ({ menuItems, setMenuItems }) => {
   );
 };
 
-export default Sandwich;
+export default Shake;

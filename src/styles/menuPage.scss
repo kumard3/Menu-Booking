@@ -17,6 +17,8 @@
     display: flex;
     justify-content: center;
     padding: 10px;
+    flex-wrap: wrap;
+    flex-direction: column;
     label {
       padding-right: 10px;
     }
@@ -45,7 +47,8 @@
   &__table {
     position: absolute;
     right: 10px;
-    top: 40px;
+    top: 57px;
+    font-size: .9rem;
   }
 }
 .success {

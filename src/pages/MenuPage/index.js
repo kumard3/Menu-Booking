@@ -17,6 +17,7 @@ import Pizza from "../../components/category/Pizza";
 import FriedChicken from "../../components/category/FriedChicken";
 import Wraps from "../../components/category/Wraps";
 import Footlongs from "../../components/category/Footlongs";
+import Shake from "../../components/category/Shake";
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
@@ -141,6 +142,11 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           <div className="catagory">
             <button
               className="catagory__wrapper"
+              onClick={() => setCategory("all")}>
+              All
+            </button>
+            <button
+              className="catagory__wrapper"
               onClick={() => setCategory("pizza")}>
               Pizzas
             </button>
@@ -168,6 +174,11 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               className="catagory__wrapper"
               onClick={() => setCategory("sandwich")}>
               Sandwich
+            </button>
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("shake")}>
+              Shakes
             </button>
             <button
               className="catagory__wrapper"
@@ -204,11 +215,18 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               return (
                 <Wraps menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            } else if (category === "footlongs") {
+            }
+             else if (category === "footlongs") {
               return (
                 <Footlongs menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            } else if (category === "pizza") {
+            } 
+             else if (category === "shake") {
+              return (
+                <Shake menuItems={menuItems} setMenuItems={setMenuItems} />
+              );
+            } 
+            else if (category === "pizza") {
               return (
                 <Pizza menuItems={menuItems} setMenuItems={setMenuItems} />
               );

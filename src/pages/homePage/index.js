@@ -200,8 +200,6 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           <label htmlFor="customerName">Address</label>
           <textarea
             className="menupage__input "
-            cols="30"
-            rows="10"
             value={address}
             required
             onChange={(e) => setAddress(e.target.value)}
