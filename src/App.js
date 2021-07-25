@@ -84,6 +84,9 @@ function App() {
         <Route path="/admin">
           <AdminPage />
         </Route>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
       </Router>
     </div>
   );

@@ -9,7 +9,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import All from "../../components/category/All";
-import Chicken from "../../components/category/Chicken";
+
 import Burger from "../../components/category/Burger";
 import Sandwich from "../../components/category/Sandwich";
 import Pasta from "../../components/category/Pasta";
@@ -17,10 +17,6 @@ import Pizza from "../../components/category/Pizza";
 import FriedChicken from "../../components/category/FriedChicken";
 import Wraps from "../../components/category/Wraps";
 import Footlongs from "../../components/category/Footlongs";
-
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.min.css";
-// Modal.setAppElement("#root");
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
@@ -43,7 +39,6 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
 
   const handleCloseError = () => {
     setError(false);
-    window.location.reload(false);
   };
   const handleClickErrorName = () => {
     setErrorName(true);
@@ -51,7 +46,6 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
 
   const handleCloseErrorName = () => {
     setErrorName(false);
-    window.location.reload(false);
   };
 
   const handleName = (e) => {
@@ -66,29 +60,20 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         completed: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
-      // .then(() => scrollToTop())
-      // .then(() => toastifySuccess())
-      // .then(() => toggleModal())
+      
       .then(() => handleClickOpen());
-    // .then(() => refreshPage());
+    
   };
-  // function refreshPage() {
-  //   setTimeout(function () {
-  //     window.location.reload(false);
-  //   }, 50000);
-  // }
-  // const scrollToTop = () => {
-  //   window.scrollTo(0, 0);
-  // };
+  
 
   const checkMenu = (event) => {
     event.preventDefault();
     if (menuItems.length === 0) {
-        alert("Add any meal.");
-      // handleClickError();
+      // alert("Add any meal.");
+      handleClickError();
     } else if (name === "") {
-        alert("Please enter your name.");
-      // handleClickErrorName();
+      // alert("Please enter your name.");
+      handleClickErrorName();
     } else {
       submitOrder();
     }
@@ -101,8 +86,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
+          aria-describedby="alert-dialog-description">
           <DialogTitle id="alert-dialog-title">
             {"Hurray! Your order has been submitted."}
           </DialogTitle>
@@ -117,8 +101,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={error}
           onClose={handleCloseError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
+          aria-describedby="alert-dialog-description">
           <DialogTitle id="alert-dialog-title">{"Add any meal."}</DialogTitle>
           <DialogActions>
             <Button onClick={handleCloseError} color="primary">
@@ -131,8 +114,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={errorname}
           onClose={handleCloseErrorName}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
+          aria-describedby="alert-dialog-description">
           <DialogTitle id="alert-dialog-title">
             {"Please enter your name."}
           </DialogTitle>
@@ -161,44 +143,37 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           <div className="catagory">
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pizza")}
-            >
+              onClick={() => setCategory("pizza")}>
               Pizzas
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pasta")}
-            >
+              onClick={() => setCategory("pasta")}>
               Pastas
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("wraps")}
-            >
+              onClick={() => setCategory("wraps")}>
               Wraps
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("footlongs")}
-            >
+              onClick={() => setCategory("footlongs")}>
               FootLongs
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("burger")}
-            >
+              onClick={() => setCategory("burger")}>
               Burger
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("sandwich")}
-            >
+              onClick={() => setCategory("sandwich")}>
               Sandwich
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("chicken")}
-            >
+              onClick={() => setCategory("chicken")}>
               Fried Chickens
             </button>
           </div>
