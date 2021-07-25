@@ -12,6 +12,49 @@ export const AdminPage = () => {
   const [orders8, setOrders8] = useState([]);
   const [orders9, setOrders9] = useState([]);
 
+  const [newOrder, setNewOrder] = useState(0);
+  const [newOrder2, setNewOrder2] = useState(0);
+  const [newOrder3, setNewOrder3] = useState(0);
+  const [newOrder4, setNewOrder4] = useState(0);
+  const [newOrder5, setNewOrder5] = useState(0);
+  const [newOrder6, setNewOrder6] = useState(0);
+  const [newOrder7, setNewOrder7] = useState(0);
+  const [newOrder8, setNewOrder8] = useState(0);
+  const [newOrder9, setNewOrder9] = useState(0);
+  console.log(newOrder);
+  const checkNewOrder = (orders) => {
+    if (orders.length > 0) {
+      let count = 0;
+      for (let i = 0; orders.length > i; i++) {
+        if (!orders[i][0].completed) {
+          count++;
+        }
+      }
+      return count;
+    }
+  };
+
+  useEffect(() => {
+    setNewOrder(checkNewOrder(orders));
+    setNewOrder2(checkNewOrder(orders2));
+    setNewOrder3(checkNewOrder(orders3));
+    setNewOrder4(checkNewOrder(orders4));
+    setNewOrder5(checkNewOrder(orders5));
+    setNewOrder6(checkNewOrder(orders6));
+    setNewOrder7(checkNewOrder(orders7));
+    setNewOrder8(checkNewOrder(orders8));
+    setNewOrder9(checkNewOrder(orders9));
+  }, [
+    orders,
+    orders2,
+    orders3,
+    orders4,
+    orders5,
+    orders6,
+    orders7,
+    orders8,
+    orders9,
+  ]);
   useEffect(() => {
     db.collection("table1")
       .orderBy("timestamp", "desc")
@@ -184,13 +227,13 @@ export const AdminPage = () => {
   const updateOrder9 = (id) => {
     db.collection("table9").doc(id).update({ completed: true });
   };
-  console.log(orders2, "orders2");
+
   return (
     <>
       <div className="admin">
         <div className="admin__wrapper">
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 1</h1>
+            <h1 className="admin__table">Table 1 {newOrder}</h1>
             {orders.map((order) => {
               return (
                 <div
@@ -231,7 +274,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 2</h1>
+            <h1 className="admin__table">Table 2 {newOrder2}</h1>
             {orders2.map((order) => {
               return (
                 <div
