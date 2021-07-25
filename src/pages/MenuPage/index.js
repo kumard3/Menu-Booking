@@ -18,13 +18,18 @@ import FriedChicken from "../../components/category/FriedChicken";
 import Wraps from "../../components/category/Wraps";
 import Footlongs from "../../components/category/Footlongs";
 import Shake from "../../components/category/Shake";
+import Drawer from "react-bottom-drawer";
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("all");
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
+
   const [errorname, setErrorName] = useState(false);
+  const [isVisible, setIsVisible] = React.useState(!true);
+  const openDrawer = React.useCallback(() => setIsVisible(true), []);
+  const closeDrawer = React.useCallback(() => setIsVisible(false), []);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -85,7 +90,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Hurray! Your order has been submitted."}
           </DialogTitle>
@@ -100,7 +106,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={error}
           onClose={handleCloseError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">{"Add any meal."}</DialogTitle>
           <DialogActions>
             <Button onClick={handleCloseError} color="primary">
@@ -113,7 +120,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={errorname}
           onClose={handleCloseErrorName}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Please enter your name."}
           </DialogTitle>
@@ -142,51 +150,68 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           <div className="catagory">
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("all")}>
+              onClick={() => setCategory("all")}
+            >
               All
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pizza")}>
+              onClick={() => setCategory("pizza")}
+            >
               Pizzas
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pasta")}>
+              onClick={() => setCategory("pasta")}
+            >
               Pastas
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("wraps")}>
+              onClick={() => setCategory("wraps")}
+            >
               Wraps
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("footlongs")}>
+              onClick={() => setCategory("footlongs")}
+            >
               FootLongs
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("burger")}>
+              onClick={() => setCategory("burger")}
+            >
               Burger
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("sandwich")}>
+              onClick={() => setCategory("sandwich")}
+            >
               Sandwich
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("shake")}>
+              onClick={() => setCategory("shake")}
+            >
               Shakes
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("chicken")}>
+              onClick={() => setCategory("chicken")}
+            >
               Fried Chickens
             </button>
           </div>
         </section>
+        {menuItems.map((menu) => {
+          return (
+            <div>
+              <h1>{menu.id}</h1>
+              <h1>{menu.name}</h1>
+            </div>
+          );
+        })}
         <h1 className="text-2xl">Menu</h1>
         <main className="menupage__product">
           {(() => {
@@ -215,18 +240,15 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               return (
                 <Wraps menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            }
-             else if (category === "footlongs") {
+            } else if (category === "footlongs") {
               return (
                 <Footlongs menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            } 
-             else if (category === "shake") {
+            } else if (category === "shake") {
               return (
                 <Shake menuItems={menuItems} setMenuItems={setMenuItems} />
               );
-            } 
-            else if (category === "pizza") {
+            } else if (category === "pizza") {
               return (
                 <Pizza menuItems={menuItems} setMenuItems={setMenuItems} />
               );
@@ -235,9 +257,33 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             }
           })()}
         </main>
-        <button className="submit" onClick={checkMenu}>
-          Submit Order
-        </button>
+
+        <button onClick={checkMenu}></button>
+
+        <img
+          onClick={openDrawer}
+          className="cart"
+          src="https://img.icons8.com/color/48/000000/shopping-cart--v2.png"
+        />
+
+        <Drawer
+          duration={250}
+          hideScrollbars={true}
+          onClose={closeDrawer}
+          isVisible={isVisible}
+        >
+          <div>
+            {menuItems.map((menu) => {
+              return (
+                <div>
+                  <h1>{menu.id}</h1>
+                  <h1>{menu.name}</h1>
+                </div>
+              );
+            })}
+            <button onClick={checkMenu}>submit </button>
+          </div>
+        </Drawer>
       </div>
     </>
   );

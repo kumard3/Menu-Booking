@@ -52,14 +52,16 @@ const MenuItem = ({ id, menuItems, setMenuItems, name, price, img }) => {
       { id: id, name: name, numberOfPlates: 1, price: price },
     ]);
   };
-
+  console.log(itemNumber);
   return (
     <div className="menuitems">
- {/* <img className="menuitems__img" src={img} alt="" /> */} 
-        <LazyLoadImage
-        src={img} 
-        effect="blur"// use normal <img> attributes as props
-    /> 
+      {/* <img className="menuitems__img" src={img} alt="" /> */}
+      <LazyLoadImage
+        src={img}
+        effect="blur" // use normal <img> attributes as props
+      />
+      {}
+
       <h3>{name}</h3>
       {itemNumber > 0 ? (
         <div className="menuitems__button2">

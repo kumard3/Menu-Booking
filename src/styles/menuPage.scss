@@ -3,6 +3,7 @@
   &__product {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     padding: 4px;
     padding-bottom: 100px;
     align-items: center;
@@ -53,4 +54,11 @@
 }
 .success {
   background-color: green;
+}
+
+.cart{
+  position: fixed;
+  z-index: 10;
+  top: 90vh;
+  margin-left: 10px;
 }
