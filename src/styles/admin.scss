@@ -8,6 +8,10 @@
 
   &__table {
     font-size: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   &__h1 {
@@ -110,4 +114,13 @@
     margin: 10px;
 
   }
+}
+.span__orderIncompleted {
+  color: black !important;
+  font-size: 1rem;
+}
+.span__green{
+  color: green !important;
+}.span__red{
+  color: red !important;
 }

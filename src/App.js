@@ -85,7 +85,7 @@ function App() {
           <AdminPage />
         </Route>
         <Route exact path="/">
-          <HomePage />
+          
         </Route>
       </Router>
     </div>

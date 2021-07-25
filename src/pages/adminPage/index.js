@@ -233,7 +233,7 @@ export const AdminPage = () => {
       <div className="admin">
         <div className="admin__wrapper">
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 1 {newOrder}</h1>
+            <h1 className="admin__table">Table 1    <span className="span__orderIncompleted" > Incompleted Orders</span>  <span className={newOrder===0 ? "span__green" : "span__red"}  >{newOrder}</span>  </h1>
             {orders.map((order) => {
               return (
                 <div
@@ -274,7 +274,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 2 {newOrder2}</h1>
+            <h1 className="admin__table">Table 2    <span className="span__orderIncompleted" > Incompleted Orders</span>  <span className={newOrder2===0 ? "span__green" : "span__red"} >{newOrder2}</span> </h1>
             {orders2.map((order) => {
               return (
                 <div
@@ -315,7 +315,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 3 {newOrder3}</h1>
+            <h1 className="admin__table">Table 3    <span className="span__orderIncompleted" > Incompleted Orders</span>  <span className={newOrder3===0 ? "span__green" : "span__red"} >{newOrder3}</span> </h1>
             {orders3.map((order) => {
               return (
                 <div
@@ -356,7 +356,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 4 {newOrder4}</h1>
+            <h1 className="admin__table">Table 4    <span className="span__orderIncompleted" > Incompleted Orders</span>  <span className={newOrder4===0 ? "span__green" : "span__red"} >{newOrder4}</span></h1>
             {orders4.map((order) => {
               return (
                 <div
@@ -397,7 +397,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 5 {newOrder5}</h1>
+            <h1 className="admin__table">Table 5    <span className="span__orderIncompleted" > Incompleted Orders</span>  <span className={newOrder5===0 ? "span__green" : "span__red"} >{newOrder5}</span></h1>
             {orders5.map((order) => {
               return (
                 <div
@@ -438,7 +438,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 6 {newOrder6}</h1>
+            <h1 className="admin__table">Table 6    <span className="span__orderIncompleted" > Incompleted Orders</span>  <span className={newOrder6===0 ? "span__green" : "span__red"} >{newOrder6}</span></h1>
             {orders6.map((order) => {
               return (
                 <div
@@ -479,7 +479,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 7 {newOrder7}</h1>
+            <h1 className="admin__table">Table 7    <span className="span__orderIncompleted" > Incompleted Orders</span>  <span className={newOrder7===0 ? "span__green" : "span__red"} >{newOrder7}</span></h1>
             {orders7.map((order) => {
               return (
                 <div
@@ -520,7 +520,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 8 {newOrder8}</h1>
+            <h1 className="admin__table">Table 8    <span className="span__orderIncompleted" > Incompleted Orders</span>  <span className={newOrder8===0 ? "span__green" : "span__red"} >{newOrder8}</span></h1>
             {orders8.map((order) => {
               return (
                 <div
@@ -561,7 +561,7 @@ export const AdminPage = () => {
             })}
           </div>
           <div className="admin__table1main">
-            <h1 className="admin__table">Table 9 {newOrder9}</h1>
+            <h1 className="admin__table">Table 9    <span className="span__orderIncompleted" > Incompleted Orders</span>  <span className={newOrder9===0 ? "span__green" : "span__red"} >{newOrder9}</span></h1>
             {orders9.map((order) => {
               return (
                 <div
