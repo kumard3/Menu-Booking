@@ -11,6 +11,7 @@ const Burger = ({ menuItems, setMenuItems }) => {
           setMenuItems={setMenuItems}
           name={item.name}
           price={item.price}
+          img={item.img}
         />
       ))}
     </>

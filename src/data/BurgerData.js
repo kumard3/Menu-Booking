@@ -1,94 +1,82 @@
-const BurgerData =  [
+const BurgerData =   [
     {
         "id": 0,
-        "name": "Aloo Tikki Burger",
+        "name": "Alco Tikki Burger",
         "price": "35",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Veg-Aloo-Tikki.png?token=AQZAIB3FP6IQJ4UO3TVDINDBAYCME",
         "non-veg": false
     },
     {
         "id": 1,
-        "name": "non-veg Surprise Burger",
+        "name": "Veg Surprise Burger",
         "price": "79",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Veg-Surprise-Burger.png?token=AQZAIBZV7ZSOVGMG2DRQAQDBAYCEI",
         "non-veg": false
     },
     {
         "id": 2,
-        "name": "Chilli lava Burger",
+        "name": "Chilli Lava Burger",
         "price": "89",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Veg-Chilli-Lava-Burger.png?token=AQZAIBZADQ3VQC723T5LDIDBAYCJK",
         "non-veg": false
     },
     {
         "id": 3,
-        "name": "Maha non-Veggies Burger",
-        "price": "109",
+        "name": "Crunchy Corn Burger",
+        "price": "89",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Veg-Crunchy-Corn-Burger.png?token=AQZAIB3ZP6XM2ZVT42DYVD3BAYCH6",
         "non-veg": false
     },
     {
         "id": 4,
-        "name": "Primium Paneer Burger",
+        "name": "Maha Veggie Burger",
         "price": "109",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Veg-Maha-Veggie-Burger.png?token=AQZAIBYNE7DBUCEUWF76NFDBAYCGC",
         "non-veg": false
     },
     {
         "id": 5,
-        "name": "Fried Chicken Burger",
-        "price": "79",
-        "non-veg": true
+        "name": "Premium Paneer Burger",
+        "price": "109",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Veg-Premium-Paneer-Burger.png?token=AQZAIB5XAJIYHCL7AIAUO43BAYCAY",
+        "non-veg": false
     },
     {
         "id": 6,
-        "name": "Chicken Surprise Burger",
-        "price": "99",
+        "name": "Fried Chicken Burger",
+        "price": "79",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Fried-Chicken-Burger.png?token=AQZAIBYJUAGGPVLGBIJGLYTBAYCUG",
         "non-veg": true
     },
     {
         "id": 7,
-        "name": "Aloo Tikki Burger + Fries + Coke",
-        "price": "115",
-        "non-veg": false
+        "name": "Chicken Surprise Burger",
+        "price": "99",
+        "img": "",
+        "non-veg": true
     },
     {
         "id": 8,
-        "name": "Surprise Burger + Fries + Coke",
-        "price": "159",
-        "non-veg": false
+        "name": "Chicken Chili Lava Burger",
+        "price": "99",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Chilli-Lava-Burger.png?token=AQZAIB55P6B4WKEMRZ6EUYLBAYCWG",
+        "non-veg": true
     },
     {
         "id": 9,
-        "name": "Chilli lava Burger+ Fries + Coke",
-        "price": "169",
-        "non-veg": false
+        "name": "Maha Chicken Burger",
+        "price": "119",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Maha-Chicken-Burger.png?token=AQZAIB5AGJ6Z6AGYFPPLCJ3BAYDAA",
+        "non-veg": true
     },
     {
         "id": 10,
-        "name": "Premium Paneer Burger + Fries + Coke",
-        "price": "179",
-        "non-veg": false
-    },
-    {
-        "id": 11,
-        "name": "Fried Chicken Burger+ Fries + Coke",
-        "price": "159",
-        "non-veg": true
-    },
-    {
-        "id": 12,
-        "name": "Chicken Surprise Burger+ Fries + Coke",
-        "price": "179",
-        "non-veg": true
-    },
-    {
-        "id": 13,
-        "name": "Chicken Chill Burger+ Fries + Coke",
-        "price": "179",
-        "non-veg": true
-    },
-    {
-        "id": 14,
-        "name": "Premium Fried Burger+ Fries + Coke",
-        "price": "199",
+        "name": "Premium Fried Chicken Burger",
+        "price": "119",
+        "img": "https://raw.githubusercontent.com/gautam4895/Grill-inn/main/img/burgers/Premium-Fried-Chicken-Burge.png?token=AQZAIBZGBSNHLP5MDCTEOADBAYCNS",
         "non-veg": true
     }
+  
 ]
 
 

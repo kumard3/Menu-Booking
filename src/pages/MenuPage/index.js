@@ -14,14 +14,20 @@ import Burger from "../../components/category/Burger";
 import Sandwich from "../../components/category/Sandwich";
 import Pasta from "../../components/category/Pasta";
 import Pizza from "../../components/category/Pizza";
+import FriedChicken from "../../components/category/FriedChicken";
+import Wraps from "../../components/category/Wraps";
+import Footlongs from "../../components/category/Footlongs";
 
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.min.css";
 // Modal.setAppElement("#root");
+
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("all");
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorname, setErrorName] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -29,6 +35,22 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
 
   const handleClose = () => {
     setOpen(false);
+    window.location.reload(false);
+  };
+  const handleClickError = () => {
+    setError(true);
+  };
+
+  const handleCloseError = () => {
+    setError(false);
+    window.location.reload(false);
+  };
+  const handleClickErrorName = () => {
+    setErrorName(true);
+  };
+
+  const handleCloseErrorName = () => {
+    setErrorName(false);
     window.location.reload(false);
   };
 
@@ -62,25 +84,15 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const checkMenu = (event) => {
     event.preventDefault();
     if (menuItems.length === 0) {
-      alert("Add any meal.");
+        alert("Add any meal.");
+      // handleClickError();
     } else if (name === "") {
-      alert("Please enter your name.");
+        alert("Please enter your name.");
+      // handleClickErrorName();
     } else {
       submitOrder();
     }
   };
-  // const toastifySuccess = () => {
-  //   toast("Hurray! Order sent.", {
-  //     position: "top-right",
-  //     autoClose: 50000,
-  //     hideProgressBar: true,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: false,
-  //     className: "submit-feedback success",
-  //     toastId: "notifyToast",
-  //   });
-  // };
 
   return (
     <>
@@ -89,7 +101,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Hurray! Your order has been submitted."}
           </DialogTitle>
@@ -99,11 +112,40 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             </Button>
           </DialogActions>
         </Dialog>
+
+        <Dialog
+          open={error}
+          onClose={handleCloseError}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Add any meal."}</DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseError} color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        <Dialog
+          open={errorname}
+          onClose={handleCloseErrorName}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Please enter your name."}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleCloseErrorName} color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
         <header className="menupage__header ">
           <Nav table={table} />
         </header>
         <section className="menupage__section ">
-          {" "}
           <label htmlFor="customerName">User Name</label>
           <input
             className="menupage__input "
@@ -119,29 +161,45 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           <div className="catagory">
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pizza")}>
+              onClick={() => setCategory("pizza")}
+            >
               Pizzas
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pasta")}>
+              onClick={() => setCategory("pasta")}
+            >
               Pastas
             </button>
-
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("chicken")}>
-              Chicken
+              onClick={() => setCategory("wraps")}
+            >
+              Wraps
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("burger")}>
+              onClick={() => setCategory("footlongs")}
+            >
+              FootLongs
+            </button>
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("burger")}
+            >
               Burger
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("sandwich")}>
+              onClick={() => setCategory("sandwich")}
+            >
               Sandwich
+            </button>
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("chicken")}
+            >
+              Fried Chickens
             </button>
           </div>
         </section>
@@ -152,7 +210,10 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               return <All menuItems={menuItems} setMenuItems={setMenuItems} />;
             } else if (category === "chicken") {
               return (
-                <Chicken menuItems={menuItems} setMenuItems={setMenuItems} />
+                <FriedChicken
+                  menuItems={menuItems}
+                  setMenuItems={setMenuItems}
+                />
               );
             } else if (category === "burger") {
               return (
@@ -166,6 +227,14 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               return (
                 <Pasta menuItems={menuItems} setMenuItems={setMenuItems} />
               );
+            } else if (category === "wraps") {
+              return (
+                <Wraps menuItems={menuItems} setMenuItems={setMenuItems} />
+              );
+            } else if (category === "footlongs") {
+              return (
+                <Footlongs menuItems={menuItems} setMenuItems={setMenuItems} />
+              );
             } else if (category === "pizza") {
               return (
                 <Pizza menuItems={menuItems} setMenuItems={setMenuItems} />
@@ -178,7 +247,6 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         <button className="submit" onClick={checkMenu}>
           Submit Order
         </button>
-        {/* <ToastContainer /> */}
       </div>
     </>
   );
