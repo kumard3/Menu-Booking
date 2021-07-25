@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MenuPage } from "./pages/MenuPage";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AdminPage } from "./pages/adminPage";
+import { HomePage } from "./pages/homePage";
 
 function App() {
   const [menuItems1, setMenuItems1] = useState([]);
@@ -13,6 +14,7 @@ function App() {
   const [menuItems7, setMenuItems7] = useState([]);
   const [menuItems8, setMenuItems8] = useState([]);
   const [menuItems9, setMenuItems9] = useState([]);
+  const [menuItemsHome, setMenuItemsHome] = useState([]);
 
   return (
     <div className="app">
@@ -83,6 +85,9 @@ function App() {
 
         <Route path="/admin">
           <AdminPage />
+        </Route>
+        <Route exact path="/">
+          <HomePage menuItems={menuItemsHome} setMenuItems={setMenuItemsHome} />
         </Route>
       </Router>
     </div>

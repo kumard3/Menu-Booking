@@ -8,6 +8,14 @@
 
   &__table {
     font-size: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+<<<<<<< HEAD
+    justify-content: space-between;
+=======
+>>>>>>> 70e48e4ada79cb0bf6e41420cd79b2ae265dbf65
   }
 
   &__h1 {
@@ -49,7 +57,7 @@
   &__table1main {
     flex-wrap: wrap;
     overflow: scroll;
-    width: 25vw;
+    width: 30vw;
     height: 22rem;
     margin: 10px;
 
@@ -110,4 +118,13 @@
     margin: 10px;
 
   }
+}
+.span__orderIncompleted {
+  color: black !important;
+  font-size: 1rem;
+}
+.span__green{
+  color: green !important;
+}.span__red{
+  color: red !important;
 }

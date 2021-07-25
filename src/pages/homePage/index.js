@@ -18,12 +18,16 @@ import FriedChicken from "../../components/category/FriedChicken";
 import Wraps from "../../components/category/Wraps";
 import Footlongs from "../../components/category/Footlongs";
 
-export const MenuPage = ({ table, menuItems, setMenuItems }) => {
+export const HomePage = ({ menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [address, setAddress] = useState("");
   const [category, setCategory] = useState("all");
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
   const [errorname, setErrorName] = useState(false);
+  const [errorContact, setErrorContact] = useState(false);
+  const [errorAddress, setErrorAddress] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -51,12 +55,28 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const handleName = (e) => {
     setName(e.target.value);
   };
+
+  const handleClickContactError = () => {
+    setErrorContact(true);
+  };
+  const handleClickAddressError = () => {
+    setErrorAddress(true);
+  };
+
+  const handleClickContactErrorClose = () => {
+    setErrorContact(false);
+  };
+  const handleClickAddressErrorClose = () => {
+    setErrorAddress(false);
+  };
+
   const submitOrder = () => {
-    db.collection(`table${table}`)
+    db.collection("home-delivery")
       .add({
         order: menuItems,
         username: name,
-        table: table,
+        contact: contact,
+        address: address,
         completed: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
@@ -72,6 +92,10 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
     } else if (name === "") {
       // alert("Please enter your name.");
       handleClickErrorName();
+    } else if (contact === "" || contact.length !== 10) {
+      handleClickContactError();
+    } else if (address === "") {
+      handleClickAddressError();
     } else {
       submitOrder();
     }
@@ -80,6 +104,34 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   return (
     <>
       <div className="menupage">
+        <Dialog
+          open={errorContact}
+          onClose={handleClickContactError}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description">
+          <DialogTitle id="alert-dialog-title">
+            {"Hey please check you contact number."}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleClickContactErrorClose} color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={errorAddress}
+          onClose={handleClickAddressError}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description">
+          <DialogTitle id="alert-dialog-title">
+            {"Hey please enter your address."}
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleClickAddressErrorClose} color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
         <Dialog
           open={open}
           onClose={handleClose}
@@ -123,7 +175,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           </DialogActions>
         </Dialog>
         <header className="menupage__header ">
-          <Nav table={table} />
+          <Nav table="Home Delivery" />
         </header>
         <section className="menupage__section ">
           <label htmlFor="customerName">User Name</label>
@@ -134,6 +186,25 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             placeholder="Please enter your name"
             required
             onChange={handleName}
+          />
+          <label htmlFor="customerName">Contact Number</label>
+          <input
+            className="menupage__input "
+            type="text"
+            value={contact}
+            pattern="[6-9]{10}"
+            placeholder="Please enter your Contact Number"
+            required
+            onChange={(e) => setContact(e.target.value)}
+          />
+          <label htmlFor="customerName">Address</label>
+          <textarea
+            className="menupage__input "
+            cols="30"
+            rows="10"
+            value={address}
+            required
+            onChange={(e) => setAddress(e.target.value)}
           />
         </section>
         <section className="menupage__catagory">
