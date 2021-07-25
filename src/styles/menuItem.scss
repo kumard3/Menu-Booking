@@ -86,18 +86,33 @@
     padding: 10px;
 
     &__wrapper{
-        display: flex;
-        background-color: #F56B00;
+       
+        // background: #F56B00;
         margin: 10px;
         border-radius: 10px;
         color: white;
-        min-width: 7rem;
+        min-width: 8rem;
         justify-content: center;
-        
-    align-items: center;
+        height: 3.4rem;
 
     }
-   
+    // img{
+    //     background-color: #0000;
+    //     border-radius: 10px;
+    //     color: white;
+    //     min-width: 7rem;
+    //     height: 3.4rem;
+    //     object-fit: cover;
+ 
+    // }
+
+    &__span{
+        position: relative;
+        color: white;
+        top: -47px;
+        left: 36px;
+    }
+
     &__name {
         margin: 10px;
         color: white;
@@ -128,9 +143,9 @@
 .button__submit{
     display:none;
 }
-*{
-    color: black;
-}
+// *{
+//     color: black;
+// }
 // .app {
 //     // background-color: #fef3c7;
 //     background-color: #ffd321;

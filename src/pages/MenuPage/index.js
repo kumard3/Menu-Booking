@@ -20,6 +20,16 @@ import Footlongs from "../../components/category/Footlongs";
 import Shake from "../../components/category/Shake";
 import Drawer from "react-bottom-drawer";
 
+
+import Group1 from "../../assets/Group1.svg";
+import Group2 from "../../assets/Group2.svg";
+import Group3 from "../../assets/Group3.svg";
+import Group4 from "../../assets/Group4.svg";
+import Group5 from "../../assets/Group5.svg";
+import Group6 from "../../assets/Group6.svg";
+import Group7 from "../../assets/Group7.svg";
+import Group8 from "../../assets/Group8.svg";
+
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("all");
@@ -154,64 +164,58 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             >
               All
             </button>
-            <button
-              className="catagory__wrapper"
-              onClick={() => setCategory("pizza")}
-            >
-              Pizzas
-            </button>
+
+          <button className="catagory__wrapper"  onClick={() => setCategory("pizza")}>
+          <img  
+           src={Group1}/>
+          </button>
+  
+  
+     
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("pasta")}
             >
-              Pastas
+             <img src={Group3}/>
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("wraps")}
             >
-              Wraps
+            <img src={Group4}/>
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("footlongs")}
             >
-              FootLongs
+            <img src={Group5}/>
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("burger")}
             >
-              Burger
+              <img src={Group2} />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("sandwich")}
             >
-              Sandwich
+            <img src={Group6}/>
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("shake")}
             >
-              Shakes
+            <img src={Group7}/>
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("chicken")}
             >
-              Fried Chickens
+            <img src={Group8}/>
             </button>
           </div>
         </section>
-        {menuItems.map((menu) => {
-          return (
-            <div>
-              <h1>{menu.id}</h1>
-              <h1>{menu.name}</h1>
-            </div>
-          );
-        })}
         <h1 className="text-2xl">Menu</h1>
         <main className="menupage__product">
           {(() => {
@@ -271,17 +275,33 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           hideScrollbars={true}
           onClose={closeDrawer}
           isVisible={isVisible}
+          className="drawer"
         >
-          <div>
-            {menuItems.map((menu) => {
-              return (
-                <div>
-                  <h1>{menu.id}</h1>
-                  <h1>{menu.name}</h1>
-                </div>
-              );
-            })}
-            <button onClick={checkMenu}>submit </button>
+          <div className="drawer__content">
+            <div className="drawer__scroll">
+              {menuItems.map((menu) => {
+                return (
+                  <div>
+                    <div className="drawer__wrapper">
+                      <h1>
+                        {" "}
+                        <span> Product Name:</span> {menu.name}
+                      </h1>
+                      <h1>
+                        <span> Price:</span> {menu.price}
+                      </h1>
+                      <h1>
+                        <span> Quantity:</span> {menu.numberOfPlates}
+                      </h1>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <button className="drawer__submit" onClick={checkMenu}>
+              {" "}
+              <span>Submit</span>{" "}
+            </button>
           </div>
         </Drawer>
       </div>
