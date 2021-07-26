@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import firebase from "firebase";
 import db from "../../firebase";
@@ -20,15 +20,33 @@ import Footlongs from "../../components/category/Footlongs";
 import Shake from "../../components/category/Shake";
 import Drawer from "react-bottom-drawer";
 
+import pizza from "../../assets/pizza.svg";
+import burger from "../../assets/burger.svg";
+import pasta from "../../assets/pasta.svg";
+import wrap from "../../assets/wrap.svg";
+import shake from "../../assets/shake.svg";
+import sandwich from "../../assets/sandwich.svg";
+import friedchicken from "../../assets/friedchicken.svg";
+import footlong from "../../assets/footlong.svg";
+import all from "../../assets/all.svg";
+import Group9 from "../../assets/Group9.svg";
+import cart from "../../assets/cart.svg";
+import cart2 from "../../assets/cart2.svg";
+import cart3 from "../../assets/cart3.svg";
 
-import Group1 from "../../assets/Group1.svg";
-import Group2 from "../../assets/Group2.svg";
-import Group3 from "../../assets/Group3.svg";
-import Group4 from "../../assets/Group4.svg";
-import Group5 from "../../assets/Group5.svg";
-import Group6 from "../../assets/Group6.svg";
-import Group7 from "../../assets/Group7.svg";
-import Group8 from "../../assets/Group8.svg";
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "30rem",
+  },
+};
 
 export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
@@ -37,9 +55,20 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const [error, setError] = useState(false);
 
   const [errorname, setErrorName] = useState(false);
+
+  const [cart, setcart] = useState(false);
   const [isVisible, setIsVisible] = React.useState(!true);
   const openDrawer = React.useCallback(() => setIsVisible(true), []);
   const closeDrawer = React.useCallback(() => setIsVisible(false), []);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const getTotalPrice = () => {
+    menuItems.map((menuItem) => {
+      setTotalPrice(
+        totalPrice + Number(menuItem.price) * menuItem.numberOfPlates
+      );
+    });
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -48,6 +77,13 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const handleClose = () => {
     setOpen(false);
     window.location.reload(false);
+  };
+  const handleCart = () => {
+    setcart(true);
+  };
+
+  const handleCartClick = () => {
+    setcart(false);
   };
   const handleClickError = () => {
     setError(true);
@@ -93,8 +129,25 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
     }
   };
 
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <>
+      <button onClick={getTotalPrice}>HUHUH</button>
       <div className="menupage">
         <Dialog
           open={open}
@@ -143,11 +196,20 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         </Dialog>
         <header className="menupage__header ">
           <Nav table={table} />
+          <img
+            onClick={cart}
+            src={Group9}
+            onClick={openModal}
+            className="cartdesktop"
+          />
+          <span className={menuItems.length === 0 ? "cart__off" : "cart__on"}>
+            {menuItems.length}
+          </span>
         </header>
         <section className="menupage__section ">
           <label htmlFor="customerName">User Name</label>
           <input
-            className="menupage__input "
+            className="menupage__input1 "
             type="text"
             value={name}
             placeholder="Please enter your name"
@@ -162,57 +224,57 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
               className="catagory__wrapper"
               onClick={() => setCategory("all")}
             >
-              All
+              <img src={all} />
             </button>
 
-          <button className="catagory__wrapper"  onClick={() => setCategory("pizza")}>
-          <img  
-           src={Group1}/>
-          </button>
-  
-  
-     
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("pizza")}
+            >
+              <img src={pizza} />
+            </button>
+
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("pasta")}
             >
-             <img src={Group3}/>
+              <img src={pasta} />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("wraps")}
             >
-            <img src={Group4}/>
+              <img src={wrap} />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("footlongs")}
             >
-            <img src={Group5}/>
+              <img src={footlong} />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("burger")}
             >
-              <img src={Group2} />
+              <img src={burger} />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("sandwich")}
             >
-            <img src={Group6}/>
+              <img src={sandwich} />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("shake")}
             >
-            <img src={Group7}/>
+              <img src={shake} />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("chicken")}
             >
-            <img src={Group8}/>
+              <img src={friedchicken} />
             </button>
           </div>
         </section>
@@ -261,14 +323,13 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             }
           })()}
         </main>
-
-        <button onClick={checkMenu}></button>
-
-        <img
-          onClick={openDrawer}
-          className="cart"
-          src="https://img.icons8.com/color/48/000000/shopping-cart--v2.png"
-        />
+        {menuItems.length && (
+          <button onClick={openDrawer} className="cart">
+            <p>Items : {menuItems.length}</p>
+            <p>{totalPrice}</p>
+            Move to Cart
+          </button>
+        )}
 
         <Drawer
           duration={250}
@@ -304,6 +365,38 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             </button>
           </div>
         </Drawer>
+
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+        >
+          <div className="drawer__scroll">
+            {menuItems.map((menu) => {
+              return (
+                <div>
+                  <div className="drawer__wrapper">
+                    <h1>
+                      {" "}
+                      <span> Product Name:</span> {menu.name}
+                    </h1>
+                    <h1>
+                      <span> Price:</span> {menu.price}
+                    </h1>
+                    <h1>
+                      <span> Quantity:</span> {menu.numberOfPlates}
+                    </h1>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <button className="drawer__submit" onClick={checkMenu}>
+            {" "}
+            <span>Submit</span>{" "}
+          </button>
+        </Modal>
       </div>
     </>
   );
