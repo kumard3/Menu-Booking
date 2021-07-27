@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import firebase from "firebase";
 import db from "../../firebase";
@@ -30,11 +30,12 @@ import friedchicken from "../../assets/friedchicken.svg";
 import footlong from "../../assets/footlong.svg";
 import all from "../../assets/all.svg";
 import Group9 from "../../assets/Group9.svg";
-import cart from "../../assets/cart.svg";
-import cart2 from "../../assets/cart2.svg";
-import cart3 from "../../assets/cart3.svg";
+// import cart from "../../assets/cart.svg";
+// import cart2 from "../../assets/cart2.svg";
+// import cart3 from "../../assets/cart3.svg";
 
 import Modal from "react-modal";
+import { useRef } from "react";
 
 const customStyles = {
   content: {
@@ -56,11 +57,13 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
 
   const [errorname, setErrorName] = useState(false);
 
-  const [cart, setcart] = useState(false);
+  // const [cart, setcart] = useState(false);
   const [isVisible, setIsVisible] = React.useState(!true);
   const openDrawer = React.useCallback(() => setIsVisible(true), []);
   const closeDrawer = React.useCallback(() => setIsVisible(false), []);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const nameRef = useRef(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -70,13 +73,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
     setOpen(false);
     window.location.reload(false);
   };
-  const handleCart = () => {
-    setcart(true);
-  };
 
-  const handleCartClick = () => {
-    setcart(false);
-  };
   const handleClickError = () => {
     setError(true);
   };
@@ -112,10 +109,13 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
     event.preventDefault();
     if (menuItems.length === 0) {
       // alert("Add any meal.");
+
       handleClickError();
     } else if (name === "") {
       // alert("Please enter your name.");
       handleClickErrorName();
+      setIsVisible(!isVisible);
+      nameRef.current.focus();
     } else {
       submitOrder();
     }
@@ -185,10 +185,11 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         <header className="menupage__header ">
           <Nav table={table} />
           <img
-            onClick={cart}
+            // onClick={cart}
             src={Group9}
             onClick={openModal}
             className="cartdesktop"
+            alt=""
           />
           <span className={menuItems.length === 0 ? "cart__off" : "cart__on"}>
             {menuItems.length}
@@ -197,6 +198,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         <section className="menupage__section ">
           <label htmlFor="customerName">User Name</label>
           <input
+            ref={nameRef}
             className="menupage__input1 "
             type="text"
             value={name}
@@ -211,49 +213,49 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("all")}>
-              <img src={all} />
+              <img src={all} alt="" />
             </button>
 
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("pizza")}>
-              <img src={pizza} />
+              <img src={pizza} alt="" />
             </button>
 
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("pasta")}>
-              <img src={pasta} />
+              <img src={pasta} alt="" />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("wraps")}>
-              <img src={wrap} />
+              <img src={wrap} alt="" />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("footlongs")}>
-              <img src={footlong} />
+              <img src={footlong} alt="" />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("burger")}>
-              <img src={burger} />
+              <img src={burger} alt="" />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("sandwich")}>
-              <img src={sandwich} />
+              <img src={sandwich} alt="" />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("shake")}>
-              <img src={shake} />
+              <img src={shake} alt="" />
             </button>
             <button
               className="catagory__wrapper"
               onClick={() => setCategory("chicken")}>
-              <img src={friedchicken} />
+              <img src={friedchicken} alt="" />
             </button>
           </div>
         </section>
@@ -381,8 +383,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                 );
               })}
             </div>
+            Total Price : {totalPrice}
             <button className="drawer__submit" onClick={checkMenu}>
-              {" "}
               <span>Submit</span>{" "}
             </button>
           </div>
