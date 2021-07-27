@@ -28,6 +28,7 @@ import sandwich from "../../assets/sandwich.svg";
 import friedchicken from "../../assets/friedchicken.svg";
 import footlong from "../../assets/footlong.svg";
 import all from "../../assets/all.svg";
+import ClipLoader from "react-spinners/ClipLoader";
 // import Group9 from "../../assets/Group9.svg";
 // import cart from "../../assets/cart.svg";
 import cart2 from "../../assets/cart2.svg";
@@ -66,6 +67,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
   const openDrawer = React.useCallback(() => setIsVisible(true), []);
   const closeDrawer = React.useCallback(() => setIsVisible(false), []);
   const [totalPrice, setTotalPrice] = useState(0);
+  let [loading, setLoading] = useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -108,6 +111,7 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
   };
 
   const submitOrder = () => {
+    setLoading(true);
     db.collection("home-delivery")
       .add({
         order: menuItems,
@@ -119,7 +123,10 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
         totalPrice: totalPrice,
       })
 
-      .then(() => handleClickOpen());
+      .then(() => handleClickOpen())
+      .then(() => {
+        setLoading(false);
+      });
   };
 
   const checkMenu = (event) => {
@@ -152,6 +159,14 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  if (loading) {
+    return (
+      <>
+        <ClipLoader color={"#fff"} loading={loading} size={150} />
+      </>
+    );
   }
 
   return (

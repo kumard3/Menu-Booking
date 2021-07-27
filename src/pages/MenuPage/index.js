@@ -62,6 +62,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const openDrawer = React.useCallback(() => setIsVisible(true), []);
   const closeDrawer = React.useCallback(() => setIsVisible(false), []);
   const [totalPrice, setTotalPrice] = useState(0);
+  let [loading, setLoading] = useState(false);
 
   const nameRef = useRef(null);
 
