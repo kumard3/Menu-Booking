@@ -62,14 +62,6 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const closeDrawer = React.useCallback(() => setIsVisible(false), []);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const getTotalPrice = () => {
-    menuItems.map((menuItem) => {
-      setTotalPrice(
-        totalPrice + Number(menuItem.price) * menuItem.numberOfPlates
-      );
-    });
-  };
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -147,14 +139,12 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
 
   return (
     <>
-      <button onClick={getTotalPrice}>HUHUH</button>
       <div className="menupage">
         <Dialog
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
+          aria-describedby="alert-dialog-description">
           <DialogTitle id="alert-dialog-title">
             {"Hurray! Your order has been submitted."}
           </DialogTitle>
@@ -169,8 +159,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={error}
           onClose={handleCloseError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
+          aria-describedby="alert-dialog-description">
           <DialogTitle id="alert-dialog-title">{"Add any meal."}</DialogTitle>
           <DialogActions>
             <Button onClick={handleCloseError} color="primary">
@@ -183,8 +172,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={errorname}
           onClose={handleCloseErrorName}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
+          aria-describedby="alert-dialog-description">
           <DialogTitle id="alert-dialog-title">
             {"Please enter your name."}
           </DialogTitle>
@@ -222,58 +210,49 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           <div className="catagory">
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("all")}
-            >
+              onClick={() => setCategory("all")}>
               <img src={all} />
             </button>
 
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pizza")}
-            >
+              onClick={() => setCategory("pizza")}>
               <img src={pizza} />
             </button>
 
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pasta")}
-            >
+              onClick={() => setCategory("pasta")}>
               <img src={pasta} />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("wraps")}
-            >
+              onClick={() => setCategory("wraps")}>
               <img src={wrap} />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("footlongs")}
-            >
+              onClick={() => setCategory("footlongs")}>
               <img src={footlong} />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("burger")}
-            >
+              onClick={() => setCategory("burger")}>
               <img src={burger} />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("sandwich")}
-            >
+              onClick={() => setCategory("sandwich")}>
               <img src={sandwich} />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("shake")}
-            >
+              onClick={() => setCategory("shake")}>
               <img src={shake} />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("chicken")}
-            >
+              onClick={() => setCategory("chicken")}>
               <img src={friedchicken} />
             </button>
           </div>
@@ -282,41 +261,85 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         <main className="menupage__product">
           {(() => {
             if (category === "all") {
-              return <All menuItems={menuItems} setMenuItems={setMenuItems} />;
+              return (
+                <All
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
+              );
             } else if (category === "chicken") {
               return (
                 <FriedChicken
                   menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
                 />
               );
             } else if (category === "burger") {
               return (
-                <Burger menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Burger
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "sandwich") {
               return (
-                <Sandwich menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Sandwich
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "pasta") {
               return (
-                <Pasta menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Pasta
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "wraps") {
               return (
-                <Wraps menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Wraps
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "footlongs") {
               return (
-                <Footlongs menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Footlongs
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "shake") {
               return (
-                <Shake menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Shake
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "pizza") {
               return (
-                <Pizza menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Pizza
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else {
               return <div>Add ANother</div>;
@@ -336,8 +359,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           hideScrollbars={true}
           onClose={closeDrawer}
           isVisible={isVisible}
-          className="drawer"
-        >
+          className="drawer">
           <div className="drawer__content">
             <div className="drawer__scroll">
               {menuItems.map((menu) => {
@@ -370,8 +392,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
-          style={customStyles}
-        >
+          style={customStyles}>
           <div className="drawer__scroll">
             {menuItems.map((menu) => {
               return (
