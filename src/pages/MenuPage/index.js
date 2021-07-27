@@ -100,6 +100,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
         table: table,
         completed: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        totalPrice: totalPrice,
       })
 
       .then(() => handleClickOpen());
