@@ -28,7 +28,7 @@ import sandwich from "../../assets/sandwich.svg";
 import friedchicken from "../../assets/friedchicken.svg";
 import footlong from "../../assets/footlong.svg";
 import all from "../../assets/all.svg";
-import ClipLoader from "react-spinners/ClipLoader";
+import CircleLoader from "react-spinners/CircleLoader";
 // import Group9 from "../../assets/Group9.svg";
 // import cart from "../../assets/cart.svg";
 import cart2 from "../../assets/cart2.svg";
@@ -36,6 +36,7 @@ import cart3 from "../../assets/cart3.svg";
 
 import Modal from "react-modal";
 import Shake from "../../components/category/Shake";
+import HomePageInput from "../../components/HomePageInput";
 
 const customStyles = {
   content: {
@@ -164,7 +165,7 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
   if (loading) {
     return (
       <>
-        <ClipLoader color={"#fff"} loading={loading} size={150} />
+        <CircleLoader color={"#fff"} loading={loading} size={150} />
       </>
     );
   }
@@ -176,7 +177,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={errorContact}
           onClose={handleClickContactError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Hey please check you contact number."}
           </DialogTitle>
@@ -190,7 +192,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={errorAddress}
           onClose={handleClickAddressError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Hey please enter your address."}
           </DialogTitle>
@@ -204,7 +207,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Hurray! Your order has been submitted."}
           </DialogTitle>
@@ -219,7 +223,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={error}
           onClose={handleCloseError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">{"Add any meal."}</DialogTitle>
           <DialogActions>
             <Button onClick={handleCloseError} color="primary">
@@ -232,7 +237,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={errorname}
           onClose={handleCloseErrorName}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Please enter your name."}
           </DialogTitle>
@@ -242,36 +248,19 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
             </Button>
           </DialogActions>
         </Dialog>
+     
         <header className="menupage__header ">
           <Nav table="Home Delivery" />
           <img alt="" src={cart2} onClick={openModal} className="cartdesktop" />
         </header>
-        <section className="menupage__section1 ">
-          <label htmlFor="customerName">User Name</label>
-          <input
-            className="menupage__input "
-            type="text"
-            value={name}
-            placeholder="Please enter your name"
-            required
-            onChange={handleName}
-          />
-          <label htmlFor="customerName">Contact Number</label>
-          <input
-            className="menupage__input "
-            type="text"
-            value={contact}
-            pattern="[6-9]{10}"
-            placeholder="Please enter your Contact Number"
-            required
-            onChange={(e) => setContact(e.target.value)}
-          />
-          <label htmlFor="customerName">Address</label>
-          <textarea
-            className="menupage__input "
-            value={address}
-            required
-            onChange={(e) => setAddress(e.target.value)}
+        <section className="menupage__section1">
+          <HomePageInput
+            contact={contact}
+            handleName={handleName}
+            setContact={setContact}
+            setAddress={setAddress}
+            address={address}
+            name={name}
           />
         </section>
         <section className="menupage__catagory">
@@ -279,49 +268,58 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           <div className="catagory">
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("all")}>
+              onClick={() => setCategory("all")}
+            >
               <img src={all} alt="" />
             </button>
 
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pizza")}>
+              onClick={() => setCategory("pizza")}
+            >
               <img src={pizza} alt="" />
             </button>
 
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pasta")}>
+              onClick={() => setCategory("pasta")}
+            >
               <img src={pasta} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("wraps")}>
+              onClick={() => setCategory("wraps")}
+            >
               <img src={wrap} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("footlongs")}>
+              onClick={() => setCategory("footlongs")}
+            >
               <img src={footlong} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("burger")}>
+              onClick={() => setCategory("burger")}
+            >
               <img src={burger} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("sandwich")}>
+              onClick={() => setCategory("sandwich")}
+            >
               <img src={sandwich} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("shake")}>
+              onClick={() => setCategory("shake")}
+            >
               <img src={shake} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("chicken")}>
+              onClick={() => setCategory("chicken")}
+            >
               <img src={friedchicken} alt="" />
             </button>
           </div>
@@ -415,15 +413,25 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
             }
           })()}
         </main>
-
-        <img onClick={openDrawer} className="cart" src={cart3} alt="" />
+        {menuItems.length && (
+          <button onClick={openDrawer} className="cart">
+            <div className="cart__wrapper">
+              <div className="cart__content">
+                <p> {menuItems.length} ITEMS </p>
+                <p> {totalPrice}</p>
+              </div>
+              <p> View Cart </p>
+            </div>
+          </button>
+        )}
 
         <Drawer
           duration={250}
           hideScrollbars={true}
           onClose={closeDrawer}
           isVisible={isVisible}
-          className="drawer">
+          className="drawer"
+        >
           <div className="drawer__content">
             <div className="drawer__scroll">
               {menuItems.map((menu) => {
@@ -445,8 +453,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
                 );
               })}
             </div>
+            Total Price : {totalPrice}
             <button className="drawer__submit" onClick={checkMenu}>
-              {" "}
               <span>Submit</span>{" "}
             </button>
           </div>
@@ -457,7 +465,7 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
           style={customStyles}
-          contentLabel="Example Modal">
+        >
           <div className="drawer__scroll">
             {menuItems.map((menu) => {
               return (

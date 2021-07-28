@@ -36,6 +36,7 @@ import Group9 from "../../assets/Group9.svg";
 
 import Modal from "react-modal";
 import { useRef } from "react";
+// import MenuPageInput from "../../components/MenuPageInput";
 
 const customStyles = {
   content: {
@@ -130,11 +131,6 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  }
-
   function closeModal() {
     setIsOpen(false);
   }
@@ -146,7 +142,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Hurray! Your order has been submitted."}
           </DialogTitle>
@@ -161,7 +158,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={error}
           onClose={handleCloseError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">{"Add any meal."}</DialogTitle>
           <DialogActions>
             <Button onClick={handleCloseError} color="primary">
@@ -174,7 +172,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           open={errorname}
           onClose={handleCloseErrorName}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Please enter your name."}
           </DialogTitle>
@@ -210,53 +209,62 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           />
         </section>
         <section className="menupage__catagory">
-          <h1>Category </h1>
+          <h1  className="text-2xl">Category </h1>
           <div className="catagory">
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("all")}>
+              onClick={() => setCategory("all")}
+            >
               <img src={all} alt="" />
             </button>
 
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pizza")}>
+              onClick={() => setCategory("pizza")}
+            >
               <img src={pizza} alt="" />
             </button>
 
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pasta")}>
+              onClick={() => setCategory("pasta")}
+            >
               <img src={pasta} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("wraps")}>
+              onClick={() => setCategory("wraps")}
+            >
               <img src={wrap} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("footlongs")}>
+              onClick={() => setCategory("footlongs")}
+            >
               <img src={footlong} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("burger")}>
+              onClick={() => setCategory("burger")}
+            >
               <img src={burger} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("sandwich")}>
+              onClick={() => setCategory("sandwich")}
+            >
               <img src={sandwich} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("shake")}>
+              onClick={() => setCategory("shake")}
+            >
               <img src={shake} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("chicken")}>
+              onClick={() => setCategory("chicken")}
+            >
               <img src={friedchicken} alt="" />
             </button>
           </div>
@@ -350,20 +358,27 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             }
           })()}
         </main>
-        {menuItems.length && (
+        <div className={menuItems.length === 0 ? "off" : "on"} >
+        {menuItems.length  &&   (
           <button onClick={openDrawer} className="cart">
-            <p>Items : {menuItems.length}</p>
-            <p>{totalPrice}</p>
-            Move to Cart
+          <div className="cart__wrapper">
+          <div className="cart__content">
+          <p> {menuItems.length} ITEMS </p>
+          <p> {totalPrice}</p>
+          </div>
+          <p> View Cart </p>
+          </div>
           </button>
-        )}
+          )}
+          </div>
 
         <Drawer
           duration={250}
           hideScrollbars={true}
           onClose={closeDrawer}
           isVisible={isVisible}
-          className="drawer">
+          className="drawer"
+        >
           <div className="drawer__content">
             <div className="drawer__scroll">
               {menuItems.map((menu) => {
@@ -384,8 +399,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   </div>
                 );
               })}
-            </div>
-            Total Price : {totalPrice}
+              </div>
+              {totalPrice > 0 && <p>Total Price : {totalPrice}</p>}
             <button className="drawer__submit" onClick={checkMenu}>
               <span>Submit</span>{" "}
             </button>
@@ -394,9 +409,9 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
 
         <Modal
           isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
           onRequestClose={closeModal}
-          style={customStyles}>
+          style={customStyles}
+        >
           <div className="drawer__scroll">
             {menuItems.map((menu) => {
               return (
