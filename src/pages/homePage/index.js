@@ -245,12 +245,15 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
         <header className="menupage__header ">
           <Nav table="Home Delivery" />
           <img
-          // onClick={cart}
-          src={Group9}
-          onClick={openModal}
-          className="cartdesktop"
-          alt=""
-        />
+            // onClick={cart}
+            src={Group9}
+            onClick={openModal}
+            className="cartdesktop"
+            alt=""
+          />
+          <span className={menuItems.length === 0 ? "cart__off" : "cart__on"}>
+            {menuItems.length}
+          </span>
         </header>
         <section className="menupage__section1">
           <HomePageInput
