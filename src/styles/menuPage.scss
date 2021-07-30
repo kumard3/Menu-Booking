@@ -61,7 +61,7 @@
   &__table {
     position: absolute;
     right: 10px;
-    top: 45px;
+    top: 65px;
     font-size: .9rem;
   }
 }
@@ -170,8 +170,8 @@
 
 @media (min-width: 768px) {
   .nav__logo {
-    width: 19%;
-    margin: 10px ;
+    width: 265px;
+    margin: 22px 0px 0px 0px;
   }
 
   .drawer {
@@ -200,9 +200,9 @@
   .cartdesktop {
     display: unset;
     float: right;
-    margin-top: -58px;
-    margin-right: 13px;
-    width: 6%;
+    margin-top: -55px;
+    margin-right: 79px;
+    width: 58px;
   }
 
   .cart__off {
@@ -227,10 +227,15 @@
   }
   .nav__table{
     position: absolute;
-    right: 30px;
+    right: 91px;
     top: 74px;
     font-size: .9rem;
+
   }
+  .menupage h1 {
+    margin-left: 32px;
+}
+
 }
 
 .cart__off {

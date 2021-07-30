@@ -12,7 +12,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   &__h1 {
@@ -25,6 +25,7 @@
     align-items: center;
     justify-content: center;
     margin: 10px;
+    
   }
 
   &__data {
@@ -54,9 +55,9 @@
   &__table1main {
     flex-wrap: wrap;
     overflow: scroll;
-    width: 30vw;
+    width: 22rem;
     height: 22rem;
-    margin: 10px;
+    margin: 3px;
 
     &::-webkit-scrollbar {
       display: none;
@@ -124,4 +125,67 @@
   color: green !important;
 }.span__red{
   color: red !important;
+}
+
+.items{
+  display: flex;
+  justify-content: space-between;
+}
+.print__button{
+  background-color: #3bbe00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+  width: 154px;
+  height: 37px;
+  margin: 10px;
+  color: white;
+}
+@media print {
+
+.modal__price{
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 24rem;
+    height: 40rem;
+    position: absolute;
+    border: none     ;
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+}
+.print__button{
+  display: none;
+}
+}
+
+.hidden{
+display: none;
+}
+
+.modal__price{
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: 24rem;
+  height: 28rem;
+  position: absolute;
+  border: none     ;
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}
+.print__wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+.print__data{
+display: flex;
+flex-direction: column;
+
 }
