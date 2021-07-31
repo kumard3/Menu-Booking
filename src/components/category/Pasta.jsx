@@ -1,7 +1,7 @@
 import React from "react";
 import PastaData from "../../data/PastaData.js";
 import MenuItem from "../MenuItem";
-const Pasta = ({ menuItems, setMenuItems, setTotalPrice, totalPrice }) => {
+const Pasta = ({ menuItems, setMenuItems, setTotalPrice, totalPrice,filter }) => {
     console.log(PastaData);
   return (
     <>
@@ -15,6 +15,8 @@ const Pasta = ({ menuItems, setMenuItems, setTotalPrice, totalPrice }) => {
           img={item.img}
           setTotalPrice={setTotalPrice}
           totalPrice={totalPrice}
+          nonVeg={item.nonveg}
+          filter={filter}
         />
       ))}
     </>

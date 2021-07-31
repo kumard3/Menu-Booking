@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import firebase from "firebase";
 import db from "../../firebase";
@@ -50,7 +50,8 @@ const customStyles = {
   },
 };
 
-export const MenuPage = ({ table, menuItems, setMenuItems }) => {
+export const MenuPage = ({ table, menuItems, setMenuItems, nonVeg }) => {
+  console.log(nonVeg);
   const [name, setName] = useState("");
   const [category, setCategory] = useState("all");
   const [open, setOpen] = useState(false);
@@ -64,7 +65,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
   const closeDrawer = React.useCallback(() => setIsVisible(false), []);
   const [totalPrice, setTotalPrice] = useState(0);
   let [loading, setLoading] = useState(false);
-
+  const [filter, setFilter] = useState();
+  const [filterveg, setFilterVeg] = useState(false);
   const nameRef = useRef(null);
 
   const handleClickOpen = () => {
@@ -91,9 +93,14 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
     setErrorName(false);
   };
 
+  const Filter = () => {
+    setFilter(!false);
+  };
+  console.log(filter);
   const handleName = (e) => {
     setName(e.target.value);
   };
+
   const submitOrder = () => {
     db.collection(`table${table}`)
       .add({
@@ -208,7 +215,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
           />
         </section>
         <section className="menupage__catagory">
-          <h1  className="text-2xl">Category </h1>
+          <h1 className="text-2xl">Category </h1>
           <div className="catagory">
             <button
               className="catagory__wrapper"
@@ -268,7 +275,14 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             </button>
           </div>
         </section>
-        <h1 className="text-2xl">Menu</h1>
+        <div className="menupage__filter">
+          <h1 className="text-2xl">Menu</h1>
+          <div className="menupage__filterVeg">
+          <button onClick={() => Filter()}>Veg</button>
+          <button onClick={() => Filter()}>Non-Veg</button>
+          </div>
+        </div>
+
         <main className="menupage__product">
           {(() => {
             if (category === "all") {
@@ -278,6 +292,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
                   totalPrice={totalPrice}
+                  filter={filter}
                 />
               );
             } else if (category === "chicken") {
@@ -287,6 +302,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
                   totalPrice={totalPrice}
+                  filter={filter}
                 />
               );
             } else if (category === "burger") {
@@ -296,6 +312,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
                   totalPrice={totalPrice}
+                  filter={filter}
                 />
               );
             } else if (category === "sandwich") {
@@ -305,6 +322,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
                   totalPrice={totalPrice}
+                  filter={filter}
                 />
               );
             } else if (category === "pasta") {
@@ -314,6 +332,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
                   totalPrice={totalPrice}
+                  filter={filter}
                 />
               );
             } else if (category === "wraps") {
@@ -323,6 +342,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
                   totalPrice={totalPrice}
+                  filter={filter}
                 />
               );
             } else if (category === "footlongs") {
@@ -332,6 +352,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
                   totalPrice={totalPrice}
+                  filter={filter}
                 />
               );
             } else if (category === "shake") {
@@ -341,6 +362,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
                   totalPrice={totalPrice}
+                  filter={filter}
                 />
               );
             } else if (category === "pizza") {
@@ -350,6 +372,7 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
                   totalPrice={totalPrice}
+                  filter={filter}
                 />
               );
             } else {
@@ -357,19 +380,19 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
             }
           })()}
         </main>
-        <div className={menuItems.length === 0 ? "off" : "on"} >
-        {menuItems.length  &&   (
-          <button onClick={openDrawer} className="cart">
-          <div className="cart__wrapper">
-          <div className="cart__content">
-          <p> {menuItems.length} ITEMS </p>
-          <p> {totalPrice}</p>
-          </div>
-          <p> View Cart </p>
-          </div>
-          </button>
+        <div className={menuItems.length === 0 ? "off" : "on"}>
+          {menuItems.length && (
+            <button onClick={openDrawer} className="cart">
+              <div className="cart__wrapper">
+                <div className="cart__content">
+                  <p> {menuItems.length} ITEMS </p>
+                  <p> {totalPrice}</p>
+                </div>
+                <p> View Cart </p>
+              </div>
+            </button>
           )}
-          </div>
+        </div>
 
         <Drawer
           duration={250}
@@ -398,8 +421,8 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
                   </div>
                 );
               })}
-              </div>
-              {totalPrice > 0 && <p>Total Price : {totalPrice}</p>}
+            </div>
+            {totalPrice > 0 && <p>Total Price : {totalPrice}</p>}
             <button className="drawer__submit" onClick={checkMenu}>
               <span>Submit</span>{" "}
             </button>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "../styles/menuItem.scss";
 
 const MenuItem = ({
@@ -12,10 +12,12 @@ const MenuItem = ({
   img,
   setTotalPrice,
   totalPrice,
+  nonVeg,
+  filter
 }) => {
   const [itemNumber, setItemNumber] = useState(0);
 
-  console.log(menuItems);
+ 
   const handlePlus = () => {
     let objIndex = menuItems.findIndex((obj) => obj.id === id);
     let newItem = [...menuItems];
@@ -65,15 +67,10 @@ const MenuItem = ({
     ]);
     setTotalPrice(totalPrice + Number(price));
   };
-  console.log(itemNumber);
+
   return (
-    <div className="menuitems">
-      {/* <img className="menuitems__img" src={img} alt="" /> */}
-      <LazyLoadImage
-        className="menuitems__img"
-        src={img}
-        effect="blur" // use normal <img> attributes as props
-      />
+    <div className={filter === nonVeg ? 'menuitems' : filter ? "none":"menuitems" }>
+      <LazyLoadImage className="menuitems__img" src={img} effect="blur" />
       <h3 className="menuitems__h3">{name}</h3>
       {itemNumber > 0 ? (
         <div className="menuitems__button2">

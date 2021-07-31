@@ -1,0 +1,14 @@
+.dashBoard{
+    width: 90vw;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+background-color: #f7f7f7;
+align-items: center;
+justify-content: center;
+position: relative;
+top: 12vh;
+overflow-y: scroll;
+width: 84%;
+left: 12rem;
+}

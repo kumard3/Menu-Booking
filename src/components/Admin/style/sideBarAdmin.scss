@@ -1,0 +1,31 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 12rem;
+  position: fixed;
+  z-index: 1;
+  top: 10vh;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.26) 0px 1px 2px;
+  transition: "0.15s ease-in-out";
+
+  &__wrapper {
+    font-family: 'Lato', sans-serif;
+    color: #161f6a;
+    padding: 20px 35px;
+    font-size: 16px;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 21px;
+    font-weight: 700;
+    
+  }
+  a{
+      margin: 13px 0px;
+  }
+}

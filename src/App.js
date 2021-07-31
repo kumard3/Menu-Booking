@@ -5,6 +5,7 @@ import { AdminPage } from "./pages/adminPage";
 import { HomePage } from "./pages/homePage";
 
 
+
 function App() {
   const [menuItems1, setMenuItems1] = useState([]);
   const [menuItems2, setMenuItems2] = useState([]);
@@ -88,6 +89,7 @@ function App() {
         <Route path="/admin">
           <AdminPage />
         </Route>
+
         <Route exact path="/">
           <HomePage menuItems={menuItemsHome} setMenuItems={setMenuItemsHome} />
         </Route>
