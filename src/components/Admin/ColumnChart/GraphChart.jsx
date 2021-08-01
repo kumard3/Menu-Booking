@@ -1,6 +1,6 @@
 import React from 'react';
 import Chart from './Chart';
-
+import '../style/Box.scss'
 const GrpahChart = ({
   widgetTitle,
   series,
@@ -110,12 +110,12 @@ const GrpahChart = ({
   };
 
   return (
-    <div>
-      <div>
-        <h1 title={widgetTitle} />
+    <div className="box">
+      <div className="box__BoxTitleWrapper">
+        <h1 className="box__BoxTitle" title={widgetTitle} />
       </div>
 
-      <div style={{ display: 'block', width: '100%' }}>
+      <div className="box__BoxContent" style={{ display: 'block', width: '100%' }}>
         <Chart
           options={options.options}
           series={options.series}

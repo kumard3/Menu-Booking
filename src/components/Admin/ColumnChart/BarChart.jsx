@@ -38,21 +38,21 @@ const BarChart = ({ series, icon, labels, prefix, colors }) => {
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <div >{icon[0]}</div>
-          <div>
-            <div style={{ color: colors[0] }}>
+    <div className="box">
+      <div className="box__BoxTitleWrapper">
+        <div className="box__ChartLabels">
+          <div className="box__Img" >{icon[0]}</div>
+          <div className="box__Content">
+            <div className="box__SeriesText" style={{ color: colors[0] }}>
               {prefix}
               {numberWithCommas(series[0])}
             </div>
-            <div>{labels[0]}</div>
+            <div className="box__LabelText">{labels[0]}</div>
           </div>
         </div>
       </div>
 
-      <div style={{ display: "block" }}>
+      <div className="box__BoxContent" style={{ display: "block" }}>
         <Chart
           options={options.options}
           series={options.series}
@@ -62,15 +62,15 @@ const BarChart = ({ series, icon, labels, prefix, colors }) => {
         />
       </div>
 
-      <div>
-        <div style={{ flexDirection: "row-reverse" }}>
-          <div style={{ marginRight: "0", marginLeft: "15px" }}  >{icon[1]}</div>
-          <div style={{ alignItems: "flex-end" }}>
-            <div style={{ color: colors[1] }}>
+      <div className="box__BoxTitleWrapper">
+        <div className="box__ChartLabels" style={{ flexDirection: "row-reverse" }}>
+          <div className="box__Img" style={{ marginRight: "0", marginLeft: "15px" }}  >{icon[1]}</div>
+          <div className="box__Content" style={{ alignItems: "flex-end" }}>
+            <div className="box__SeriesText" style={{ color: colors[1] }}>
               {prefix}
               {numberWithCommas(series[1])}
             </div>
-            <div>{labels[1]}</div>
+            <div className="box__LabelText">{labels[1]}</div>
           </div>
         </div>
       </div>

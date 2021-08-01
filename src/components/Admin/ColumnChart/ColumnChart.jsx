@@ -1,5 +1,6 @@
 import React from "react";
 import Chart from "./Chart";
+import "../style/Box.scss";
 
 const BarChart = ({
   widgetTitle,
@@ -91,23 +92,19 @@ const BarChart = ({
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <div title={widgetTitle} />
-          <div>
-            <div>
+    <div className="box">
+      <div className="box__BoxTitleWrapper">
+        <div className="box__ContentWrapper">
+          <div className="box__BoxTitle" title={widgetTitle} />
+          <div className="box__Content">
+            <div className="box__SeriesText">
               {prefix}
               {totalValue}
             </div>
-            <div>
-              <span style={{ color: "#00C58D" }}>
-           
-              </span>
+            <div className="box__LabelText">
+              <span style={{ color: "#00C58D" }}></span>
 
-              <span style={{ color: "#fc4a71" }}>
-
-              </span>
+              <span style={{ color: "#fc4a71" }}></span>
 
               <span style={{ marginLeft: 5 }}>
                 <span style={{ color: "#00C58D" }}>{percentage}</span>
@@ -119,7 +116,7 @@ const BarChart = ({
         </div>
       </div>
 
-      <div style={{ display: "block" }}>
+      <div  className="box__BoxContent" style={{ display: "block" }}>
         <Chart
           options={options.options}
           series={options.series}

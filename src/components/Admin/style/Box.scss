@@ -1,0 +1,71 @@
+.box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 21px 36px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+    padding: 10px;
+    &__BoxTitleWrapper{
+        padding: 30px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-betwween
+    }
+
+    &__BoxContent{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__BoxHeading{
+        
+        font-family: Lato, sans-serif;
+        font-size: 16px;
+         color:#161F6A ;
+        line-height: 1.3;
+        margin: 0;
+      
+    @media only screen and (max-width: 767px) {
+          display: block
+        }
+    }
+
+
+    &__ContentWrapper{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      
+        @media only screen and (max-width: 990px) {
+          flex-direction: column;
+        }
+    }
+    &__Legend{
+        display: flex;
+        align-items: center;
+    }
+    &__Color{
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 15px;
+        display: flex;
+    }
+    &__Content{
+        display: flex;
+        flex-direction: column;
+      
+        @media only screen and (max-width: 767px) {
+          margin-top: 20px;
+        }
+    }
+    &__SeriesText{
+        line-height: 1.2;
+        color: #00C58D;
+    }
+}
