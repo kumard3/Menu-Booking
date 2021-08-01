@@ -17,6 +17,41 @@ import Pizza from "../../components/category/Pizza";
 import FriedChicken from "../../components/category/FriedChicken";
 import Wraps from "../../components/category/Wraps";
 import Footlongs from "../../components/category/Footlongs";
+import Drawer from "react-bottom-drawer";
+
+import pizza from "../../assets/pizza.svg";
+import burger from "../../assets/burger.svg";
+import pasta from "../../assets/pasta.svg";
+import wrap from "../../assets/wrap.svg";
+import shake from "../../assets/shake.svg";
+import sandwich from "../../assets/sandwich.svg";
+import friedchicken from "../../assets/friedchicken.svg";
+import footlong from "../../assets/footlong.svg";
+import all from "../../assets/all.svg";
+import CircleLoader from "react-spinners/CircleLoader";
+// import Group9 from "../../assets/Group9.svg";
+// import cart from "../../assets/cart.svg";
+import cart2 from "../../assets/cart2.svg";
+import cart3 from "../../assets/cart3.svg";
+
+import Modal from "react-modal";
+import Shake from "../../components/category/Shake";
+import HomePageInput from "../../components/HomePageInput";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "30rem",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+};
 
 export const HomePage = ({ menuItems, setMenuItems }) => {
   const [name, setName] = useState("");
@@ -28,6 +63,12 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
   const [errorname, setErrorName] = useState(false);
   const [errorContact, setErrorContact] = useState(false);
   const [errorAddress, setErrorAddress] = useState(false);
+
+  const [isVisible, setIsVisible] = React.useState(!true);
+  const openDrawer = React.useCallback(() => setIsVisible(true), []);
+  const closeDrawer = React.useCallback(() => setIsVisible(false), []);
+  const [totalPrice, setTotalPrice] = useState(0);
+  let [loading, setLoading] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -71,6 +112,7 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
   };
 
   const submitOrder = () => {
+    setLoading(true);
     db.collection("home-delivery")
       .add({
         order: menuItems,
@@ -79,9 +121,13 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
         address: address,
         completed: false,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        totalPrice: totalPrice,
       })
 
-      .then(() => handleClickOpen());
+      .then(() => handleClickOpen())
+      .then(() => {
+        setLoading(false);
+      });
   };
 
   const checkMenu = (event) => {
@@ -100,6 +146,29 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
       submitOrder();
     }
   };
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  if (loading) {
+    return (
+      <>
+        <CircleLoader color={"#fff"} loading={loading} size={150} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -108,7 +177,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={errorContact}
           onClose={handleClickContactError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Hey please check you contact number."}
           </DialogTitle>
@@ -122,7 +192,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={errorAddress}
           onClose={handleClickAddressError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Hey please enter your address."}
           </DialogTitle>
@@ -136,7 +207,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Hurray! Your order has been submitted."}
           </DialogTitle>
@@ -151,7 +223,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={error}
           onClose={handleCloseError}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">{"Add any meal."}</DialogTitle>
           <DialogActions>
             <Button onClick={handleCloseError} color="primary">
@@ -164,7 +237,8 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           open={errorname}
           onClose={handleCloseErrorName}
           aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description">
+          aria-describedby="alert-dialog-description"
+        >
           <DialogTitle id="alert-dialog-title">
             {"Please enter your name."}
           </DialogTitle>
@@ -174,37 +248,19 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
             </Button>
           </DialogActions>
         </Dialog>
+     
         <header className="menupage__header ">
           <Nav table="Home Delivery" />
+          <img alt="" src={cart2} onClick={openModal} className="cartdesktop" />
         </header>
-        <section className="menupage__section ">
-          <label htmlFor="customerName">User Name</label>
-          <input
-            className="menupage__input "
-            type="text"
-            value={name}
-            placeholder="Please enter your name"
-            required
-            onChange={handleName}
-          />
-          <label htmlFor="customerName">Contact Number</label>
-          <input
-            className="menupage__input "
-            type="text"
-            value={contact}
-            pattern="[6-9]{10}"
-            placeholder="Please enter your Contact Number"
-            required
-            onChange={(e) => setContact(e.target.value)}
-          />
-          <label htmlFor="customerName">Address</label>
-          <textarea
-            className="menupage__input "
-            cols="30"
-            rows="10"
-            value={address}
-            required
-            onChange={(e) => setAddress(e.target.value)}
+        <section className="menupage__section1">
+          <HomePageInput
+            contact={contact}
+            handleName={handleName}
+            setContact={setContact}
+            setAddress={setAddress}
+            address={address}
+            name={name}
           />
         </section>
         <section className="menupage__catagory">
@@ -212,38 +268,59 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
           <div className="catagory">
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pizza")}>
-              Pizzas
+              onClick={() => setCategory("all")}
+            >
+              <img src={all} alt="" />
+            </button>
+
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("pizza")}
+            >
+              <img src={pizza} alt="" />
+            </button>
+
+            <button
+              className="catagory__wrapper"
+              onClick={() => setCategory("pasta")}
+            >
+              <img src={pasta} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("pasta")}>
-              Pastas
+              onClick={() => setCategory("wraps")}
+            >
+              <img src={wrap} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("wraps")}>
-              Wraps
+              onClick={() => setCategory("footlongs")}
+            >
+              <img src={footlong} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("footlongs")}>
-              FootLongs
+              onClick={() => setCategory("burger")}
+            >
+              <img src={burger} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("burger")}>
-              Burger
+              onClick={() => setCategory("sandwich")}
+            >
+              <img src={sandwich} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("sandwich")}>
-              Sandwich
+              onClick={() => setCategory("shake")}
+            >
+              <img src={shake} alt="" />
             </button>
             <button
               className="catagory__wrapper"
-              onClick={() => setCategory("chicken")}>
-              Fried Chickens
+              onClick={() => setCategory("chicken")}
+            >
+              <img src={friedchicken} alt="" />
             </button>
           </div>
         </section>
@@ -251,46 +328,169 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
         <main className="menupage__product">
           {(() => {
             if (category === "all") {
-              return <All menuItems={menuItems} setMenuItems={setMenuItems} />;
+              return (
+                <All
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
+              );
             } else if (category === "chicken") {
               return (
                 <FriedChicken
                   menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
                   setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
                 />
               );
             } else if (category === "burger") {
               return (
-                <Burger menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Burger
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "sandwich") {
               return (
-                <Sandwich menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Sandwich
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "pasta") {
               return (
-                <Pasta menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Pasta
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "wraps") {
               return (
-                <Wraps menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Wraps
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "footlongs") {
               return (
-                <Footlongs menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Footlongs
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
+              );
+            } else if (category === "shake") {
+              return (
+                <Shake
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else if (category === "pizza") {
               return (
-                <Pizza menuItems={menuItems} setMenuItems={setMenuItems} />
+                <Pizza
+                  menuItems={menuItems}
+                  setTotalPrice={setTotalPrice}
+                  setMenuItems={setMenuItems}
+                  totalPrice={totalPrice}
+                />
               );
             } else {
               return <div>Add ANother</div>;
             }
           })()}
         </main>
-        <button className="submit" onClick={checkMenu}>
-          Submit Order
-        </button>
+        {menuItems.length && (
+          <button onClick={openDrawer} className="cart">
+            <div className="cart__wrapper">
+              <div className="cart__content">
+                <p> {menuItems.length} ITEMS </p>
+                <p> {totalPrice}</p>
+              </div>
+              <p> View Cart </p>
+            </div>
+          </button>
+        )}
+
+        <Drawer
+          duration={250}
+          hideScrollbars={true}
+          onClose={closeDrawer}
+          isVisible={isVisible}
+          className="drawer"
+        >
+          <div className="drawer__content">
+            <div className="drawer__scroll">
+              {menuItems.map((menu) => {
+                return (
+                  <div>
+                    <div className="drawer__wrapper">
+                      <h1>
+                        {" "}
+                        <span> Product Name:</span> {menu.name}
+                      </h1>
+                      <h1>
+                        <span> Price:</span> {menu.price}
+                      </h1>
+                      <h1>
+                        <span> Quantity:</span> {menu.numberOfPlates}
+                      </h1>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            Total Price : {totalPrice}
+            <button className="drawer__submit" onClick={checkMenu}>
+              <span>Submit</span>{" "}
+            </button>
+          </div>
+        </Drawer>
+
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+        >
+          <div className="drawer__scroll">
+            {menuItems.map((menu) => {
+              return (
+                <div>
+                  <div className="drawer__wrapper">
+                    <h1>
+                      {" "}
+                      <span> Product Name:</span> {menu.name}
+                    </h1>
+                    <h1>
+                      <span> Price:</span> {menu.price}
+                    </h1>
+                    <h1>
+                      <span> Quantity:</span> {menu.numberOfPlates}
+                    </h1>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <button className="drawer__submit" onClick={checkMenu}>
+            {" "}
+            <span>Submit</span>{" "}
+          </button>
+        </Modal>
       </div>
     </>
   );

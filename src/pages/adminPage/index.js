@@ -11,7 +11,7 @@ export const AdminPage = () => {
   const [orders7, setOrders7] = useState([]);
   const [orders8, setOrders8] = useState([]);
   const [orders9, setOrders9] = useState([]);
-
+  console.log(orders);
   const [newOrder, setNewOrder] = useState(0);
   const [newOrder2, setNewOrder2] = useState(0);
   const [newOrder3, setNewOrder3] = useState(0);
@@ -24,7 +24,7 @@ export const AdminPage = () => {
   const [newOnlineOrders, setNewOnlineOrders] = useState(0);
 
   const [onlineOrders, setOnlineOrders] = useState([]);
-  console.log(newOrder);
+
   const checkNewOrder = (orders) => {
     if (orders.length > 0) {
       let count = 0;
@@ -71,6 +71,7 @@ export const AdminPage = () => {
               id: doc.id,
               completed: doc.data().completed,
               username: doc.data().username,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -87,6 +88,7 @@ export const AdminPage = () => {
               id: doc.id,
               completed: doc.data().completed,
               username: doc.data().username,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -103,6 +105,7 @@ export const AdminPage = () => {
               id: doc.id,
               completed: doc.data().completed,
               username: doc.data().username,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -119,6 +122,7 @@ export const AdminPage = () => {
               id: doc.id,
               completed: doc.data().completed,
               username: doc.data().username,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -135,6 +139,7 @@ export const AdminPage = () => {
               id: doc.id,
               completed: doc.data().completed,
               username: doc.data().username,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -151,6 +156,7 @@ export const AdminPage = () => {
               id: doc.id,
               completed: doc.data().completed,
               username: doc.data().username,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -167,6 +173,7 @@ export const AdminPage = () => {
               id: doc.id,
               completed: doc.data().completed,
               username: doc.data().username,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -183,6 +190,7 @@ export const AdminPage = () => {
               id: doc.id,
               completed: doc.data().completed,
               username: doc.data().username,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -199,6 +207,7 @@ export const AdminPage = () => {
               id: doc.id,
               completed: doc.data().completed,
               username: doc.data().username,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -217,6 +226,7 @@ export const AdminPage = () => {
               username: doc.data().username,
               address: doc.data().address,
               contact: doc.data().contact,
+              totalprice: doc.data().totalPrice,
             },
           ])
         );
@@ -284,18 +294,17 @@ export const AdminPage = () => {
                       <div>
                         <h1>
                           <span>Product Name : </span> {item.name}
+                          <span> :{item.numberOfPlates} </span>
                         </h1>
                         <h1>
                           {" "}
                           <span>Price :</span>{" "}
                           {item.numberOfPlates * item.price}
                         </h1>
-                        <h1>
-                          <span>Number Of Plates :</span> {item.numberOfPlates}
-                        </h1>
                       </div>
                     );
                   })}
+                  <h1>Total Price : {order[0].totalprice}</h1>
                   {!order[0].completed && (
                     <button
                       className="button__y"
@@ -333,19 +342,19 @@ export const AdminPage = () => {
                     return (
                       <div>
                         <h1>
-                          <span>Product Name : </span> {item.name}
+                          <span>Product Name : </span> {item.name}{" "}
+                          {item.numberOfPlates}
+                          <span> :{item.numberOfPlates} </span>
                         </h1>
                         <h1>
                           {" "}
                           <span>Price :</span>{" "}
                           {item.numberOfPlates * item.price}
                         </h1>
-                        <h1>
-                          <span>Number Of Plates :</span> {item.numberOfPlates}
-                        </h1>
                       </div>
                     );
                   })}
+                  <h1>Total Price : {order[0].totalprice}</h1>
                   {!order[0].completed && (
                     <button
                       className="button__y"
@@ -384,18 +393,17 @@ export const AdminPage = () => {
                       <div>
                         <h1>
                           <span>Product Name : </span> {item.name}
+                          <span> :{item.numberOfPlates} </span>
                         </h1>
                         <h1>
                           {" "}
                           <span>Price :</span>{" "}
                           {item.numberOfPlates * item.price}
                         </h1>
-                        <h1>
-                          <span>Number Of Plates :</span> {item.numberOfPlates}
-                        </h1>
                       </div>
                     );
                   })}
+                  <h1>Total Price : {order[0].totalprice}</h1>
                   {!order[0].completed && (
                     <button
                       className="button__y"
@@ -434,18 +442,17 @@ export const AdminPage = () => {
                       <div>
                         <h1>
                           <span>Product Name : </span> {item.name}
+                          <span> :{item.numberOfPlates} </span>
                         </h1>
                         <h1>
                           {" "}
                           <span>Price :</span>{" "}
                           {item.numberOfPlates * item.price}
                         </h1>
-                        <h1>
-                          <span>Number Of Plates :</span> {item.numberOfPlates}
-                        </h1>
                       </div>
                     );
                   })}
+                  <h1>Total Price : {order[0].totalprice}</h1>
                   {!order[0].completed && (
                     <button
                       className="button__y"
@@ -484,18 +491,17 @@ export const AdminPage = () => {
                       <div>
                         <h1>
                           <span>Product Name : </span> {item.name}
+                          <span> :{item.numberOfPlates} </span>
                         </h1>
                         <h1>
                           {" "}
                           <span>Price :</span>{" "}
                           {item.numberOfPlates * item.price}
                         </h1>
-                        <h1>
-                          <span>Number Of Plates :</span> {item.numberOfPlates}
-                        </h1>
                       </div>
                     );
                   })}
+                  <h1>Total Price : {order[0].totalprice}</h1>
                   {!order[0].completed && (
                     <button
                       className="button__y"
@@ -534,18 +540,17 @@ export const AdminPage = () => {
                       <div>
                         <h1>
                           <span>Product Name : </span> {item.name}
+                          <span> :{item.numberOfPlates} </span>
                         </h1>
                         <h1>
                           {" "}
                           <span>Price :</span>{" "}
                           {item.numberOfPlates * item.price}
                         </h1>
-                        <h1>
-                          <span>Number Of Plates :</span> {item.numberOfPlates}
-                        </h1>
                       </div>
                     );
                   })}
+                  <h1>Total Price : {order[0].totalprice}</h1>
                   {!order[0].completed && (
                     <button
                       className="button__y"
@@ -584,18 +589,17 @@ export const AdminPage = () => {
                       <div>
                         <h1>
                           <span>Product Name : </span> {item.name}
+                          <span> :{item.numberOfPlates} </span>
                         </h1>
                         <h1>
                           {" "}
                           <span>Price :</span>{" "}
                           {item.numberOfPlates * item.price}
                         </h1>
-                        <h1>
-                          <span>Number Of Plates :</span> {item.numberOfPlates}
-                        </h1>
                       </div>
                     );
                   })}
+                  <h1>Total Price : {order[0].totalprice}</h1>
                   {!order[0].completed && (
                     <button
                       className="button__y"
@@ -634,18 +638,17 @@ export const AdminPage = () => {
                       <div>
                         <h1>
                           <span>Product Name : </span> {item.name}
+                          <span> :{item.numberOfPlates} </span>
                         </h1>
                         <h1>
                           {" "}
                           <span>Price :</span>{" "}
                           {item.numberOfPlates * item.price}
                         </h1>
-                        <h1>
-                          <span>Number Of Plates :</span> {item.numberOfPlates}
-                        </h1>
                       </div>
                     );
                   })}
+                  <h1>Total Price : {order[0].totalprice}</h1>
                   {!order[0].completed && (
                     <button
                       className="button__y"
@@ -684,18 +687,17 @@ export const AdminPage = () => {
                       <div>
                         <h1>
                           <span>Product Name : </span> {item.name}
+                          <span> :{item.numberOfPlates} </span>
                         </h1>
                         <h1>
                           {" "}
                           <span>Price :</span>{" "}
                           {item.numberOfPlates * item.price}
                         </h1>
-                        <h1>
-                          <span>Number Of Plates :</span> {item.numberOfPlates}
-                        </h1>
                       </div>
                     );
                   })}
+                  <h1>Total Price : {order[0].totalprice}</h1>
                   {!order[0].completed && (
                     <button
                       className="button__y"
@@ -732,18 +734,17 @@ export const AdminPage = () => {
                   return (
                     <div>
                       <h1>
+                        <span> :{item.numberOfPlates} </span>
                         <span>Product Name : </span> {item.name}
                       </h1>
                       <h1>
                         {" "}
                         <span>Price :</span> {item.numberOfPlates * item.price}
                       </h1>
-                      <h1>
-                        <span>Number Of Plates :</span> {item.numberOfPlates}
-                      </h1>
                     </div>
                   );
                 })}
+                <h1>Total Price : {order[0].totalprice}</h1>
                 {!order[0].completed && (
                   <button
                     className="button__y"
