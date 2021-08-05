@@ -124,7 +124,6 @@ export const MenuPage = ({ table, menuItems, setMenuItems }) => {
     }
   };
 
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   function openModal() {
