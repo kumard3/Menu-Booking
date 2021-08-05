@@ -29,10 +29,7 @@ import friedchicken from "../../assets/friedchicken.svg";
 import footlong from "../../assets/footlong.svg";
 import all from "../../assets/all.svg";
 import CircleLoader from "react-spinners/CircleLoader";
-// import Group9 from "../../assets/Group9.svg";
-// import cart from "../../assets/cart.svg";
-import cart2 from "../../assets/cart2.svg";
-import cart3 from "../../assets/cart3.svg";
+import Group9 from "../../assets/Group9.svg";
 
 import Modal from "react-modal";
 import Shake from "../../components/category/Shake";
@@ -153,10 +150,6 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  }
 
   function closeModal() {
     setIsOpen(false);
@@ -251,7 +244,16 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
      
         <header className="menupage__header ">
           <Nav table="Home Delivery" />
-          <img alt="" src={cart2} onClick={openModal} className="cartdesktop" />
+          <img
+            // onClick={cart}
+            src={Group9}
+            onClick={openModal}
+            className="cartdesktop"
+            alt=""
+          />
+          <span className={menuItems.length === 0 ? "cart__off" : "cart__on"}>
+            {menuItems.length}
+          </span>
         </header>
         <section className="menupage__section1">
           <HomePageInput
@@ -413,17 +415,19 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
             }
           })()}
         </main>
-        {menuItems.length && (
+        <div className={menuItems.length === 0 ? "off" : "on"} >
+        {menuItems.length  &&   (
           <button onClick={openDrawer} className="cart">
-            <div className="cart__wrapper">
-              <div className="cart__content">
-                <p> {menuItems.length} ITEMS </p>
-                <p> {totalPrice}</p>
-              </div>
-              <p> View Cart </p>
-            </div>
+          <div className="cart__wrapper">
+          <div className="cart__content">
+          <p> {menuItems.length} ITEMS </p>
+          <p> {totalPrice}</p>
+          </div>
+          <p> View Cart </p>
+          </div>
           </button>
-        )}
+          )}
+          </div>
 
         <Drawer
           duration={250}
@@ -462,7 +466,7 @@ export const HomePage = ({ menuItems, setMenuItems }) => {
 
         <Modal
           isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
+       
           onRequestClose={closeModal}
           style={customStyles}
         >
