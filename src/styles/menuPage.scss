@@ -2,7 +2,7 @@
   // background-color: #ff2121;
   // background-color: #ff1a14c2;
   // color: white;
-
+background-color: #f7f7f7;
   &__product {
     display: flex;
     flex-wrap: wrap;
@@ -73,8 +73,8 @@
 .cart {
   position: fixed;
   z-index: 10;
-  top: 89vh;
-  height: 11vh;
+  top: 87vh;
+  height: 13vh;
   background-color: white;
   display: flex;
   width: 100%;
@@ -82,7 +82,7 @@
   /* border: .9px solid grey; */
   border-top-width: 1px;
   transition: all 0.3s ease-in-out;
-  transition: 2s ease-out;
+ 
 
   &__wrapper {
     background-color: #ff3131;
@@ -249,6 +249,6 @@
 .off{
   display: none;
 }
-.on{
-
+.none{
+  display: none;
 }

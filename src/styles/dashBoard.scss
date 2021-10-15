@@ -1,0 +1,64 @@
+.dashBoard {
+  width: 90vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #f7f7f7;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 12vh;
+  overflow-y: scroll;
+  width: 81%;
+  left: 12rem;
+  &__mid {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 96%;
+  }
+  &__graphChat {
+    @media only screen and (min-width: 768px) {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      padding-right: 8px;
+      padding-left: 8px;
+      flex-basis: 58.33333333%;
+      max-width: 58.33333333%;
+    }
+    @media only screen and (min-width: 992px) {
+      flex-basis: 66.66666667%;
+      max-width: 66.66666667%;
+    }
+  }
+  &__barChat {
+    @media only screen and (min-width: 768px) {
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      padding-right: 8px;
+      padding-left: 8px;
+      flex-basis: 41.66666667%;
+      max-width: 41.66666667%;
+    }
+    @media only screen and (min-width: 992px) {
+      flex-basis: 33.33333333%;
+      max-width: 33.33333333%;
+    }
+  }
+
+  &__bottom {
+    width: 98%;
+    padding: 10px 0px;
+    }
+
+  &__wrap{
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+.dashBoard__bottom{
+    width: 94%;
+    padding: 10px 0px;
+    }
