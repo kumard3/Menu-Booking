@@ -1,7 +1,7 @@
 import React from "react";
 import FriedChickenData from "../../data/FriedChickenData.js";
 import MenuItem from "../MenuItem";
-const FriedChicken = ({ menuItems, setMenuItems, setTotalPrice, totalPrice }) => {
+const FriedChicken = ({ menuItems, setMenuItems, setTotalPrice, totalPrice,filter }) => {
     console.log(FriedChickenData);
   return (
     <>
@@ -15,6 +15,8 @@ const FriedChicken = ({ menuItems, setMenuItems, setTotalPrice, totalPrice }) =>
           img={item.img}
           setTotalPrice={setTotalPrice}
           totalPrice={totalPrice}
+          nonVeg={item.nonveg}
+          filter={filter}
         />
       ))}
     </>

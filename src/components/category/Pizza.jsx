@@ -1,7 +1,7 @@
 import React from "react";
 import PizzaData from "../../data/PizzaData.js";
 import MenuItem from "../MenuItem";
-const Pizza = ({ menuItems, setMenuItems, setTotalPrice, totalPrice }) => {
+const Pizza = ({ menuItems, setMenuItems, setTotalPrice, totalPrice,filter }) => {
   console.log(PizzaData);
   return (
     <>
@@ -15,6 +15,8 @@ const Pizza = ({ menuItems, setMenuItems, setTotalPrice, totalPrice }) => {
           img={item.img}
           setTotalPrice={setTotalPrice}
           totalPrice={totalPrice}
+          nonVeg={item.nonveg}
+          filter={filter}
         />
       ))}
     </>

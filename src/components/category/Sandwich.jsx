@@ -1,7 +1,7 @@
 import React from "react";
 import SandwichData from "../../data/SandwichData.js";
 import MenuItem from "../MenuItem";
-const Sandwich = ({ menuItems, setMenuItems, setTotalPrice, totalPrice }) => {
+const Sandwich = ({ menuItems, setMenuItems, setTotalPrice, totalPrice,filter }) => {
   return (
     <>
       {SandwichData.map((item) => (
@@ -14,6 +14,8 @@ const Sandwich = ({ menuItems, setMenuItems, setTotalPrice, totalPrice }) => {
           img={item.img}
           setTotalPrice={setTotalPrice}
           totalPrice={totalPrice}
+          nonVeg={item.nonveg}
+          filter={filter}
         />
       ))}
     </>
