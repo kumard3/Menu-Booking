@@ -1,5 +1,5 @@
 .dashBoard {
-  width: 90vw;
+  width: 99%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -9,8 +9,8 @@
   position: relative;
   top: 12vh;
   overflow-y: scroll;
-  width: 81%;
-  left: 12rem;
+  // width: 81%;
+  // left: 12rem;
   &__mid {
     box-sizing: border-box;
     display: flex;
@@ -51,14 +51,57 @@
   &__bottom {
     width: 98%;
     padding: 10px 0px;
-    }
+  }
 
-  &__wrap{
+  &__wrap {
     flex-basis: 100%;
     max-width: 100%;
   }
 }
-.dashBoard__bottom{
-    width: 94%;
-    padding: 10px 0px;
-    }
+.dashBoard__bottom {
+  width: 94%;
+  padding: 10px 0px;
+}
+@media (max-width: 640px) {
+  .bottom__nav {
+    width: 96vw;
+    height: 10vh;
+    border-radius: 10px;
+    display: flex;
+    position: fixed;
+    top: 88vh;
+    left: 2%;
+    background-color: white;
+    z-index: 10;
+    --tw--shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    justify-content: center;
+    align-items: center;
+  }
+  .bottom__navWrapper {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  .bottom__navContainer{
+    display: flex;
+  }
+}
+
+@media (min-width: 640px) {
+  .dashBoard {
+    // width: 83vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #f7f7f7;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 12vh;
+    overflow-y: scroll;
+    width: 81%;
+    left: 12rem;
+  }
+}

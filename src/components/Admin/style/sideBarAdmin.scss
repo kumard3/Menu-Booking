@@ -1,17 +1,18 @@
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 12rem;
-  position: fixed;
-  z-index: 1;
-  top: 10vh;
-  left: 0;
-  overflow-x: hidden;
-  padding-top: 10px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.26) 0px 1px 2px;
-  transition: "0.15s ease-in-out";
+  // display: flex;
+  // flex-direction: column;
+  // height: 100%;
+  // width: 12rem;
+  // position: fixed;
+  // z-index: 1;
+  // top: 10vh;
+  // left: 0;
+  // overflow-x: hidden;
+  // padding-top: 10px;
+  // background-color: white;
+  // box-shadow: rgba(0, 0, 0, 0.26) 0px 1px 2px;
+  // transition: "0.15s ease-in-out";
+  display: none;
 
   &__wrapper {
     font-family: 'Lato', sans-serif;
@@ -28,4 +29,20 @@
   a{
       margin: 13px 0px;
   }
+}
+@media (min-width: 640px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 12rem;
+    position: fixed;
+    z-index: 1;
+    top: 10vh;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.26) 0px 1px 2px;
+    transition: "0.15s ease-in-out";}
 }

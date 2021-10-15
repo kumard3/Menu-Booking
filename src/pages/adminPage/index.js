@@ -2,37 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import db from "../../firebase";
 import "../../styles/admin.scss";
 import { useReactToPrint } from "react-to-print";
-import PrintProvider, { Print, NoPrint } from "react-easy-print";
 
-import { Layout, Menu } from "antd";
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Modal from "react-modal";
 import NavAdmin from "../../components/Admin/NavAdmin";
 import SidebarNav from "../../components/Admin/SidebarNav";
 import { OrdersPage } from "./pages/OrdersPage";
 import DashBoard from "./pages/DashBoard";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "24rem",
-    height: "33rem",
-  },
-};
 
 export const AdminPage = () => {
   const [orders, setOrders] = useState([]);

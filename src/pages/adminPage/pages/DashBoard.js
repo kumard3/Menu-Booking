@@ -13,7 +13,8 @@ import GrpahChart from "../../../components/Admin/ColumnChart/GraphChart";
 function DashBoard({ total, totalOrders }) {
   console.log(total);
   return (
-    <div className="dashBoard">
+    <div className="dashBoard ">
+      
       <DashBoardCard total={total} totalOrders={totalOrders} />
       <div className="dashBoard__mid">
         <div className="dashBoard__graphChat">
